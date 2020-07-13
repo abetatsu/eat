@@ -24,7 +24,7 @@
 <div class="col-sm-3">
 <div class="card" style="width: 18rem;">
   <div class="card-header">
-  本日の記録
+  本日({{ $user->updated_at->format('Y/m/d') }})の記録
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">トータル摂取カロリー：{{ $user->totalCalories }}kcal</li>
