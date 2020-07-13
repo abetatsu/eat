@@ -8,10 +8,19 @@
      </div>
 @endif
 
-<form action="/beef" method="get">
-@csrf
-<button class="btn btn-primary">牛丼</button>
-</form>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card homecard">
+      <div class="card-body">
+        <form action="/beef" method="get">
+            @csrf
+        <button class="btn stretched-link" onfocus="this.blur();">牛丼</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 @endsection
