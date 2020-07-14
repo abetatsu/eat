@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Beef;
+use App\Curry;
 
 class UserController extends Controller
 {
@@ -50,7 +51,7 @@ class UserController extends Controller
     {
         $user = \Auth::user();
 
-        
+
 
         return view('user.show', ['user' => $user]);
     }
@@ -77,14 +78,29 @@ class UserController extends Controller
     {
         $user = \Auth::user();
 
-        $beef = Beef::find($request->beef_id);
+        if($request->has('beef_id')) {
+            $beef = Beef::find($request->beef_id);
 
-        $user->totalPrice += $beef->price;
-        $user->totalCalories += $beef->calories;
-        $user->totalProtein += $beef->protein;
-        $user->totalFat += $beef->fat;
-        $user->totalCarb += $beef->carb;
-        $user->totalSodium += $beef->sodium;
+            $user->totalPrice += $beef->price;
+            $user->totalCalories += $beef->calories;
+            $user->totalProtein += $beef->protein;
+            $user->totalFat += $beef->fat;
+            $user->totalCarb += $beef->carb;
+            $user->totalSodium += $beef->sodium;
+
+        } else if($request->has('curry_id')) {
+
+            $curry = Curry::find($request->curry_id);
+
+            $user->totalPrice += $curry->price;
+            $user->totalCalories += $curry->calories;
+            $user->totalProtein += $curry->protein;
+            $user->totalFat += $curry->fat;
+            $user->totalCarb += $curry->carb;
+            $user->totalSodium += $curry->sodium;
+        }
+
+        
         
         $user->save();
         
