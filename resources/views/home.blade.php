@@ -20,6 +20,36 @@
       </div>
     </div>
   </div>
+  <div class="col-sm-6">
+    <div class="card homecard">
+      <div class="card-body">
+        <form action="/curry" method="get">
+            @csrf
+        <button class="btn stretched-link" onfocus="this.blur();">カレー</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card homecard">
+      <div class="card-body">
+        <form action="" method="get">
+            @csrf
+        <button class="btn stretched-link" onfocus="this.blur();">朝食</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card homecard">
+      <div class="card-body">
+        <form action="" method="get">
+            @csrf
+        <button class="btn stretched-link" onfocus="this.blur();">丼もの</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
 

@@ -14,6 +14,9 @@
 Route::get('/beef', 'BeefController@index');
 Route::get('/beef/{beef}', 'BeefController@show');
 
+Route::get('/curry', 'CurryController@index');
+Route::get('/curry/{curry}', 'CurryController@show');
+
 Route::post('/user', 'UserController@update');
 Route::get('/user/{user}', 'UserController@show');
 

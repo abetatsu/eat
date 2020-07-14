@@ -4,9 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Beef extends Model
+class Curry extends Model
 {
-    protected $table = 'beefs';
-
-
+    //
 }
