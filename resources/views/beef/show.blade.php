@@ -8,7 +8,7 @@
   {{ $beef->name }}
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">金額{{ $beef->price }}円</li>
+    <li class="list-group-item">金額：{{ $beef->price }}円</li>
     <li class="list-group-item">カロリー：{{ $beef->calories }}kcal</li>
     <li class="list-group-item">タンパク質：{{ $beef->protein }}g</li>
     <li class="list-group-item">脂質：{{ $beef->fat }}g</li>

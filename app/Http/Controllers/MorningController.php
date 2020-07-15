@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Beef;
+use App\Morning;
 use Illuminate\Http\Request;
 
-class BeefController extends Controller
+class MorningController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class BeefController extends Controller
      */
     public function index()
     {
-        $beefs = Beef::paginate(12);
-        return view('beef/index', ['beefs' => $beefs]);
+        $mornings = Morning::paginate(6);
+        return view('morning.index', ['mornings' => $mornings]);
     }
 
     /**
@@ -42,21 +42,21 @@ class BeefController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Beef  $beef
+     * @param  \App\Morning  $morning
      * @return \Illuminate\Http\Response
      */
-    public function show(Beef $beef)
+    public function show(Morning $morning)
     {
-        return view('beef.show', ['beef' => $beef]);
+        return view('morning.show', ['morning'=> $morning]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Beef  $beef
+     * @param  \App\Morning  $morning
      * @return \Illuminate\Http\Response
      */
-    public function edit(Beef $beef)
+    public function edit(Morning $morning)
     {
         //
     }
@@ -65,10 +65,10 @@ class BeefController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Beef  $beef
+     * @param  \App\Morning  $morning
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Beef $beef)
+    public function update(Request $request, Morning $morning)
     {
         //
     }
@@ -76,10 +76,10 @@ class BeefController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Beef  $beef
+     * @param  \App\Morning  $morning
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Beef $beef)
+    public function destroy(Morning $morning)
     {
         //
     }

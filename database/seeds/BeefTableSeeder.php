@@ -605,7 +605,271 @@ class BeefTableSeeder extends Seeder
                 'sodium' => '6.9',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime()
-            ]
+            ],
+            [
+                'name' => '牛丼ライト(お肉ミニ)',
+                'price' => '390',
+                'calories' => '329',
+                'protein' => '20.9',
+                'fat' => '21.0',
+                'carb' => '15.2',
+                'sodium' => '2.2',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => '牛丼ライト(お肉並盛)',
+                'price' => '430',
+                'calories' => '425',
+                'protein' => '25.7',
+                'fat' => '28.3',
+                'carb' => '17.9',
+                'sodium' => '2.8',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => '牛丼ライト(お肉大盛)',
+                'price' => '530',
+                'calories' => '515',
+                'protein' => '30.1',
+                'fat' => '35.2',
+                'carb' => '20.3',
+                'sodium' => '3.4',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => 'キムチ牛丼ライト(お肉ミニ)',
+                'price' => '520',
+                'calories' => '352',
+                'protein' => '22.3',
+                'fat' => '21.3',
+                'carb' => '19.7',
+                'sodium' => '3.6',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => 'キムチ牛丼ライト(お肉並盛)',
+                'price' => '560',
+                'calories' => '447',
+                'protein' => '27.0',
+                'fat' => '28.7',
+                'carb' => '22.3',
+                'sodium' => '4.2',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => 'キムチ牛丼ライト(お肉大盛)',
+                'price' => '660',
+                'calories' => '537',
+                'protein' => '31.5',
+                'fat' => '35.6',
+                'carb' => '24.8',
+                'sodium' => '4.7',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => 'ねぎ玉牛丼ライト(お肉ミニ)',
+                'price' => '520',
+                'calories' => '434',
+                'protein' => '28.1',
+                'fat' => '27.4',
+                'carb' => '19.0',
+                'sodium' => '2.2',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => 'ねぎ玉牛丼ライト(お肉並盛)',
+                'price' => '560',
+                'calories' => '530',
+                'protein' => '32.9',
+                'fat' => '34.8',
+                'carb' => '21.6',
+                'sodium' => '2.8',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => 'ねぎ玉牛丼ライト(お肉大盛)',
+                'price' => '660',
+                'calories' => '620',
+                'protein' => '37.4',
+                'fat' => '41.7',
+                'carb' => '24.1',
+                'sodium' => '3.4',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => 'とろ〜り3種のチーズ牛丼ライト(お肉ミニ)',
+                'price' => '540',
+                'calories' => '502',
+                'protein' => '31.7',
+                'fat' => '34.3',
+                'carb' => '17.9',
+                'sodium' => '2.4',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => 'とろ〜り3種のチーズ牛丼ライト(お肉並盛)',
+                'price' => '580',
+                'calories' => '597',
+                'protein' => '36.5',
+                'fat' => '41.7',
+                'carb' => '20.5',
+                'sodium' => '3.0',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => 'とろ〜り3種のチーズ牛丼ライト(お肉大盛)',
+                'price' => '680',
+                'calories' => '687',
+                'protein' => '40.9',
+                'fat' => '48.6',
+                'carb' => '23.0',
+                'sodium' => '3.6',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => 'おろしポン酢牛丼ライト(お肉ミニ)',
+                'price' => '520',
+                'calories' => '351',
+                'protein' => '22.1',
+                'fat' => '21.1',
+                'carb' => '19.4',
+                'sodium' => '3.4',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => 'おろしポン酢牛丼ライト(お肉並盛)',
+                'price' => '560',
+                'calories' => '446',
+                'protein' => '26.8',
+                'fat' => '28.4',
+                'carb' => '22.0',
+                'sodium' => '4.0',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => 'おろしポン酢牛丼ライト(お肉大盛)',
+                'price' => '660',
+                'calories' => '536',
+                'protein' => '31.3',
+                'fat' => '35.3',
+                'carb' => '24.5',
+                'sodium' => '4.6',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => '高菜明太マヨ牛丼ライト(お肉ミニ)',
+                'price' => '520',
+                'calories' => '427',
+                'protein' => '22.1',
+                'fat' => '30.5',
+                'carb' => '18.4',
+                'sodium' => '3.3',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => '高菜明太マヨ牛丼ライト(お肉並盛)',
+                'price' => '560',
+                'calories' => '522',
+                'protein' => '26.9',
+                'fat' => '37.9',
+                'carb' => '21.0',
+                'sodium' => '3.9',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => '高菜明太マヨ牛丼ライト(お肉大盛)',
+                'price' => '660',
+                'calories' => '612',
+                'protein' => '31.3',
+                'fat' => '44.8',
+                'carb' => '23.5',
+                'sodium' => '4.5',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => 'わさび山かけ牛丼ライト(お肉ミニ)',
+                'price' => '520',
+                'calories' => '371',
+                'protein' => '21.9',
+                'fat' => '21.2',
+                'carb' => '24.5',
+                'sodium' => '1.6',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => 'わさび山かけ牛丼ライト(お肉並盛)',
+                'price' => '560',
+                'calories' => '466',
+                'protein' => '26.7',
+                'fat' => '28.6',
+                'carb' => '27.1',
+                'sodium' => '2.2',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => 'わさび山かけ牛丼ライト(お肉大盛)',
+                'price' => '660',
+                'calories' => '556',
+                'protein' => '31.2',
+                'fat' => '35.5',
+                'carb' => '29.6',
+                'sodium' => '2.8',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => 'かつぶしオクラ牛丼ライト(お肉ミニ)',
+                'price' => '520',
+                'calories' => '354',
+                'protein' => '22.8',
+                'fat' => '21.1',
+                'carb' => '20.3',
+                'sodium' => '2.5',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => 'かつぶしオクラ牛丼ライト(お肉並盛)',
+                'price' => '560',
+                'calories' => '450',
+                'protein' => '27.6',
+                'fat' => '28.4',
+                'carb' => '22.9',
+                'sodium' => '3.1',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
+            [
+                'name' => 'かつぶしオクラ牛丼ライト(お肉大盛)',
+                'price' => '660',
+                'calories' => '540',
+                'protein' => '32.0',
+                'fat' => '35.3',
+                'carb' => '25.4',
+                'sodium' => '3.6',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+            ],
         ]);
     }
 }

@@ -15,7 +15,7 @@
       <div class="card-body">
         <form action="/beef" method="get">
             @csrf
-        <button class="btn stretched-link" onfocus="this.blur();">牛丼</button>
+        <button class="btn stretched-link" onfocus="this.blur();">牛丼(牛丼ライト含む)</button>
         </form>
       </div>
     </div>
@@ -33,7 +33,7 @@
   <div class="col-sm-6">
     <div class="card homecard">
       <div class="card-body">
-        <form action="" method="get">
+        <form action="/morning" method="get">
             @csrf
         <button class="btn stretched-link" onfocus="this.blur();">朝食</button>
         </form>
@@ -43,14 +43,35 @@
   <div class="col-sm-6">
     <div class="card homecard">
       <div class="card-body">
-        <form action="" method="get">
+        <form action="/other" method="get">
             @csrf
-        <button class="btn stretched-link" onfocus="this.blur();">丼もの</button>
+        <button class="btn stretched-link" onfocus="this.blur();">海鮮・丼もの</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card homecard">
+      <div class="card-body">
+        <form action="/sidemenu" method="get">
+            @csrf
+        <button class="btn stretched-link" onfocus="this.blur();">サイドメニュー</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card homecard">
+      <div class="card-body">
+        <form action="/setmeal" method="get">
+            @csrf
+        <button class="btn stretched-link" onfocus="this.blur();">定食</button>
         </form>
       </div>
     </div>
   </div>
 </div>
+
 
 
 @endsection
