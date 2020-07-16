@@ -14,7 +14,7 @@ class SetmealController extends Controller
      */
     public function index()
     {
-        $setmeals = Setmeal::paginate(6);
+        $setmeals = Setmeal::paginate(12);
         return view('setmeal.index', ['setmeals' => $setmeals]);
     }
 

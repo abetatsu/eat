@@ -14,7 +14,7 @@ class OtherController extends Controller
      */
     public function index()
     {
-        $others = Other::paginate(6);
+        $others = Other::paginate(12);
         return view('other.index', ['others' => $others]);
     }
 

@@ -14,7 +14,7 @@ class CurryController extends Controller
      */
     public function index()
     {
-        $curries = Curry::paginate(5);
+        $curries = Curry::paginate(10);
         return view('curry.index', ['curries' => $curries]);
     }
 

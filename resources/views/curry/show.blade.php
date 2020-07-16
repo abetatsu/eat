@@ -19,6 +19,11 @@
      @csrf
      <button class="btn btn-primary">カレー 一覧に戻る</button>
      </form>
+     <form method="post" action="/user">
+          @csrf
+      <input type="hidden" name="curry_id" value="{{ $curry->id }}">
+      <button type="submit" class="btn btn-primary">注文</button>
+      </form>
      </li>
   </ul>
 </div>

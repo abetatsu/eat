@@ -8,7 +8,7 @@
      </div>
 @endif
 
-
+<div class="center">
 <div class="row">
   <div class="col-sm-6">
     <div class="card homecard">
@@ -71,7 +71,7 @@
     </div>
   </div>
 </div>
-
+</div>
 
 
 @endsection
