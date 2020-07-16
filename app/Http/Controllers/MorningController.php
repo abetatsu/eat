@@ -12,9 +12,15 @@ class MorningController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $mornings = Morning::paginate(12);
+        if($request->has('morning')) {
+            $mornings = Morning::where('name', 'like', '%'.$request->get('morning').'%')->paginate(12);
+
+        } else {
+            $mornings = Morning::paginate(12);
+        }
+        
         return view('morning.index', ['mornings' => $mornings]);
     }
 

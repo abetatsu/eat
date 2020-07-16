@@ -2,6 +2,11 @@
 
 @section('content')
 
+<form action="/curry" method="action">
+  <input type="text" name="curry">
+  <input type="submit" value="商品検索">
+</form>
+
 <div class="row">
 @foreach($curries as $curry)
   <div class="col-sm-4">
@@ -21,7 +26,7 @@
 </div>
 
 <div class="row justify-content-center">
-     {{ $curries->links() }}
+     {{ $curries->appends(['curry' => Request::get('curry')])->links() }}
 </div>
 
 @endsection

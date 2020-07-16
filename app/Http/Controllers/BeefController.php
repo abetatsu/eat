@@ -12,9 +12,14 @@ class BeefController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $beefs = Beef::paginate(12);
+        if($request->has('beef')) {
+            $beefs = Beef::where('name', 'like', '%'.$request->get('beef').'%')->paginate(12);
+
+        } else {
+            $beefs = Beef::paginate(12);
+        }
         return view('beef/index', ['beefs' => $beefs]);
     }
 

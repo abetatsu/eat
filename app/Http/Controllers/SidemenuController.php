@@ -12,9 +12,16 @@ class SidemenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $sidemenus = Sidemenu::paginate(12);
+        if($request->has('sidemenu')) {
+
+            $sidemenus = Sidemenu::where('name', 'like', '%'.$request->get('sidemenu').'%')->paginate(12);
+
+        } else {
+            $sidemenus = Sidemenu::paginate(12);
+        }
+        
         return view('sidemenu.index', ['sidemenus' => $sidemenus]);
     }
 

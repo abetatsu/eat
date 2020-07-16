@@ -12,9 +12,16 @@ class CurryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $curries = Curry::paginate(10);
+        if($request->has('curry')) {
+            $curries = Curry::where('name', 'like', '%'.$request->get('curry').'%')->paginate(10);
+
+        } else {
+            
+            $curries = Curry::paginate(10);
+        }
+        
         return view('curry.index', ['curries' => $curries]);
     }
 

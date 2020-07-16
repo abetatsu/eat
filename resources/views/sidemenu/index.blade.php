@@ -2,6 +2,11 @@
 
 @section('content')
 
+<form method="get" action="/sidemenu">
+     <input type="text" name="sidemenu">
+     <input type="submit" value="検索">
+</form>
+
 <div class="row">
 @foreach($sidemenus as $sidemenu)
   <div class="col-sm-4">
@@ -21,7 +26,7 @@
 </div>
 
 <div class="row justify-content-center">
-     {{ $sidemenus->links() }}
+     {{ $sidemenus->appends(['sidemenu' => Request::get('sidemenu')])->links() }}
 </div>
 
 @endsection

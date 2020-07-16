@@ -3,6 +3,11 @@
 
 @section('content')
 
+<form method="GET" action="/beef">
+    <input type="text" name="beef">
+    <input type="submit" value="商品検索">
+</form>
+
 <div class="row">
 @foreach($beefs as $beef)
   <div class="col-sm-4">
@@ -22,7 +27,7 @@
 </div>
 
 <div class="row justify-content-center">
-     {{ $beefs->onEachSide(5)->links() }}
+     {{ $beefs->appends(['beef' => Request::get('beef')])->onEachSide(5)->links() }}
 </div>
 
 @endsection

@@ -12,9 +12,14 @@ class OtherController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $others = Other::paginate(12);
+        if($request->has('other')) {
+            $others = Other::where('name', 'like', '%'.$request->get('other').'%')->paginate(12);
+        } else {
+            $others = Other::paginate(12);
+        }
+        
         return view('other.index', ['others' => $others]);
     }
 

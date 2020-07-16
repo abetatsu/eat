@@ -12,9 +12,15 @@ class SetmealController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $setmeals = Setmeal::paginate(12);
+        if($request->has('setmeal')) {
+            $setmeals = Setmeal::where('name', 'like', '%'.$request->get('setmeal').'%')->paginate(12);
+
+        } else {
+            $setmeals = Setmeal::paginate(12);
+        }
+        
         return view('setmeal.index', ['setmeals' => $setmeals]);
     }
 
