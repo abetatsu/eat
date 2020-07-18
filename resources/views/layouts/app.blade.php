@@ -41,6 +41,10 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
+                            <form action="{{ route('home') }}" method="get">
+                            @csrf
+                            <button class="btn btn-primary">MENU一覧へ</button>
+                            </form>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
