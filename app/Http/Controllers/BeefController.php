@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Beef;
 use Illuminate\Http\Request;
+use Validator;
 
 class BeefController extends Controller
 {
@@ -14,7 +15,21 @@ class BeefController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->has('beef')) {
+            if($request->has('beef')) {
+
+                $validator = Validator::make($request->all(),
+                    [
+                    'beef' => 'required|max:10',
+                    ],
+                    [
+                        'beef.required' => 'キーワードを入力してください',
+                    ]);
+    
+                if($validator->fails())
+                {
+                    return redirect()->back()->withErrors($validator->errors())->withInput();
+                }
+
             $beefs = Beef::where('name', 'like', '%'.$request->get('beef').'%')->paginate(12);
 
         } else {

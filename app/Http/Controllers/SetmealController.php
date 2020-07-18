@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Setmeal;
 use Illuminate\Http\Request;
+use Validator;
 
 class SetmealController extends Controller
 {
@@ -14,7 +15,23 @@ class SetmealController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->has('setmeal')) {
+
+            if($request->has('setmeal')) {
+
+                $validator = Validator::make($request->all(),
+                    [
+                    'setmeal' => 'required|max:10',
+                    ],
+                    [
+                        'setmeal.required' => 'キーワードを入力してください',
+                    ]);
+    
+                if($validator->fails())
+                {
+                    return redirect()->back()->withErrors($validator->errors())->withInput();
+                }
+
+
             $setmeals = Setmeal::where('name', 'like', '%'.$request->get('setmeal').'%')->paginate(12);
 
         } else {

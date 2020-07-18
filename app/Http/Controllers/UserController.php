@@ -82,7 +82,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         
-        $user = \Auth::user();
+        $user = Auth::user();
 
         if($request->has('beef_id')) {
             $beef = Beef::find($request->beef_id);

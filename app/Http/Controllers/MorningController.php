@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Morning;
 use Illuminate\Http\Request;
+use Validator;
 
 class MorningController extends Controller
 {
@@ -14,7 +15,23 @@ class MorningController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->has('morning')) {
+
+
+            if($request->has('morning')) {
+
+                $validator = Validator::make($request->all(),
+                    [
+                    'morning' => 'required|max:10',
+                    ],
+                    [
+                        'morning.required' => 'キーワードを入力してください',
+                    ]);
+    
+                if($validator->fails())
+                {
+                    return redirect()->back()->withErrors($validator->errors())->withInput();
+                }
+
             $mornings = Morning::where('name', 'like', '%'.$request->get('morning').'%')->paginate(12);
 
         } else {

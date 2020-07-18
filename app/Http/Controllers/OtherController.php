@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Other;
 use Illuminate\Http\Request;
+use Validator;
 
 class OtherController extends Controller
 {
@@ -14,7 +15,22 @@ class OtherController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->has('other')) {
+
+            if($request->has('other')) {
+
+                $validator = Validator::make($request->all(),
+                    [
+                    'other' => 'required|max:10',
+                    ],
+                    [
+                        'other.required' => 'キーワードを入力してください',
+                    ]);
+    
+                if($validator->fails())
+                {
+                    return redirect()->back()->withErrors($validator->errors())->withInput();
+                }
+        
             $others = Other::where('name', 'like', '%'.$request->get('other').'%')->paginate(12);
         } else {
             $others = Other::paginate(12);

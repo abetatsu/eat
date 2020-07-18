@@ -3,6 +3,21 @@
 
 @section('content')
 
+@if (Request::has('beef'))
+<form action="/beef" method="get">
+    @csrf
+<button class="btn btn-primary">牛丼MENU一覧へ</button>
+</form>
+@endif
+
+@if ($errors->any())
+<div class="alert alert-danger">
+    @foreach($errors->all() as $error)
+   {{ $error }}
+    @endforeach
+</div>
+@endif
+
 <form method="GET" action="/beef">
     <input type="text" name="beef">
     <input type="submit" value="商品検索">

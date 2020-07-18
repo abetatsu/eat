@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Curry;
 use Illuminate\Http\Request;
+use Validator;
 
 class CurryController extends Controller
 {
@@ -15,6 +16,20 @@ class CurryController extends Controller
     public function index(Request $request)
     {
         if($request->has('curry')) {
+
+            $validator = Validator::make($request->all(),
+                [
+                'curry' => 'required|max:10',
+                ],
+                [
+                    'curry.required' => 'キーワードを入力してください',
+                ]);
+
+            if($validator->fails())
+            {
+                return redirect()->back()->withErrors($validator->errors())->withInput();
+            }
+
             $curries = Curry::where('name', 'like', '%'.$request->get('curry').'%')->paginate(10);
 
         } else {

@@ -2,6 +2,21 @@
 
 @section('content')
 
+@if (Request::has('setmeal'))
+<form action="/setmeal" method="get">
+    @csrf
+<button class="btn btn-primary">定食MENU一覧へ</button>
+</form>
+@endif
+
+@if ($errors->any())
+<div class="alert alert-danger">
+    @foreach($errors->all() as $error)
+   {{ $error }}
+    @endforeach
+</div>
+@endif
+
 <form action="/setmeal" method="get">
      <input type="text" name="setmeal">
      <input type="submit" value="検索">

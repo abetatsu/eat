@@ -2,6 +2,21 @@
 
 @section('content')
 
+@if (Request::has('other'))
+<form action="/other" method="get">
+    @csrf
+<button class="btn btn-primary">海鮮・丼ものMENU一覧へ</button>
+</form>
+@endif
+
+@if ($errors->any())
+<div class="alert alert-danger">
+    @foreach($errors->all() as $error)
+   {{ $error }}
+    @endforeach
+</div>
+@endif
+
 <form action="/other" method="get">
      <input type="text" name="other">
      <input type="submit" value="検索">

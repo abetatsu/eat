@@ -2,6 +2,21 @@
 
 @section('content')
 
+@if (Request::has('sidemenu'))
+<form action="/sidemenu" method="get">
+    @csrf
+<button class="btn btn-primary">サイドメニューMENU一覧へ</button>
+</form>
+@endif
+
+@if ($errors->any())
+<div class="alert alert-danger">
+    @foreach($errors->all() as $error)
+   {{ $error }}
+    @endforeach
+</div>
+@endif
+
 <form method="get" action="/sidemenu">
      <input type="text" name="sidemenu">
      <input type="submit" value="検索">

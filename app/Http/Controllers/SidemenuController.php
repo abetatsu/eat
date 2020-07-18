@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Sidemenu;
 use Illuminate\Http\Request;
+use Validator;
 
 class SidemenuController extends Controller
 {
@@ -14,7 +15,21 @@ class SidemenuController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->has('sidemenu')) {
+
+            if($request->has('sidemenu')) {
+
+                $validator = Validator::make($request->all(),
+                    [
+                    'sidemenu' => 'required|max:10',
+                    ],
+                    [
+                        'sidemenu.required' => 'キーワードを入力してください',
+                    ]);
+    
+                if($validator->fails())
+                {
+                    return redirect()->back()->withErrors($validator->errors())->withInput();
+                }
 
             $sidemenus = Sidemenu::where('name', 'like', '%'.$request->get('sidemenu').'%')->paginate(12);
 
