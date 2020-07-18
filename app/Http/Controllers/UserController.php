@@ -14,6 +14,10 @@ use App\Sidemenu;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -53,10 +57,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user = \Auth::user();
-
-
-
+        $user = Auth::user();
         return view('user.show', ['user' => $user]);
     }
 
@@ -80,6 +81,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        
         $user = \Auth::user();
 
         if($request->has('beef_id')) {
