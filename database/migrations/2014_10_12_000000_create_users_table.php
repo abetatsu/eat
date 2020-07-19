@@ -20,12 +20,12 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->integer('totalPrice')->nullable();
-            $table->integer('totalCalories')->nullable();
-            $table->decimal('totalProtein')->nullable();
-            $table->decimal('totalFat')->nullable();
-            $table->decimal('totalCarb')->nullable();
-            $table->decimal('totalSodium')->nullable();
+            $table->integer('totalPrice')->default(0);
+            $table->integer('totalCalories')->default(0);
+            $table->decimal('totalProtein')->default(0);
+            $table->decimal('totalFat')->default(0);
+            $table->decimal('totalCarb')->default(0);
+            $table->decimal('totalSodium')->default(0);
             $table->timestamps();
         });
     }
