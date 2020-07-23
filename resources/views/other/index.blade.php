@@ -18,7 +18,8 @@
 @endif
 
 <form action="/other" method="get">
-     <input type="text" name="other">
+@csrf
+     <input type="text" name="other" value="{{ old('other', $keyword) }}">
      <input type="submit" value="検索">
 </form>
 
@@ -41,7 +42,7 @@
 </div>
 
 <div class="row justify-content-center">
-     {{ $others->appends(['other' => Request::get('other')])->links() }}
+     {{ $others->appends(['other' => $keyword])->links() }}
 </div>
 
 @endsection

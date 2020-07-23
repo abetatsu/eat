@@ -15,6 +15,7 @@ class SidemenuController extends Controller
      */
     public function index(Request $request)
     {
+        $keyword = $request->get('sidemenu');
 
             if($request->has('sidemenu')) {
 
@@ -31,13 +32,13 @@ class SidemenuController extends Controller
                     return redirect()->back()->withErrors($validator->errors())->withInput();
                 }
 
-            $sidemenus = Sidemenu::where('name', 'like', '%'.$request->get('sidemenu').'%')->paginate(12);
+            $sidemenus = Sidemenu::where('name', 'like', '%'.$keyword.'%')->paginate(12);
 
         } else {
             $sidemenus = Sidemenu::paginate(12);
         }
         
-        return view('sidemenu.index', ['sidemenus' => $sidemenus]);
+        return view('sidemenu.index', ['sidemenus' => $sidemenus])->with('keyword', $keyword);
     }
 
     /**

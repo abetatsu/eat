@@ -15,6 +15,7 @@ class SetmealController extends Controller
      */
     public function index(Request $request)
     {
+        $keyword = $request->get('setmeal');
 
             if($request->has('setmeal')) {
 
@@ -32,13 +33,13 @@ class SetmealController extends Controller
                 }
 
 
-            $setmeals = Setmeal::where('name', 'like', '%'.$request->get('setmeal').'%')->paginate(12);
+            $setmeals = Setmeal::where('name', 'like', '%'.$keyword.'%')->paginate(12);
 
         } else {
             $setmeals = Setmeal::paginate(12);
         }
         
-        return view('setmeal.index', ['setmeals' => $setmeals]);
+        return view('setmeal.index', ['setmeals' => $setmeals])->with('keyword', $keyword);
     }
 
     /**

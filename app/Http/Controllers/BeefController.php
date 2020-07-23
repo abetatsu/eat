@@ -15,6 +15,8 @@ class BeefController extends Controller
      */
     public function index(Request $request)
     {
+        $keyword = $request->get('beef');
+
             if($request->has('beef')) {
 
                 $validator = Validator::make($request->all(),
@@ -30,12 +32,13 @@ class BeefController extends Controller
                     return redirect()->back()->withErrors($validator->errors())->withInput();
                 }
 
-            $beefs = Beef::where('name', 'like', '%'.$request->get('beef').'%')->paginate(12);
+            $beefs = Beef::where('name', 'like', '%'.$keyword.'%')->paginate(12);
 
         } else {
             $beefs = Beef::paginate(12);
         }
-        return view('beef/index', ['beefs' => $beefs]);
+
+        return view('beef.index', ['beefs' => $beefs])->with('keyword', $keyword);
     }
 
     /**
