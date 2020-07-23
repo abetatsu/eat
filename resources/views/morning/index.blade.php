@@ -18,7 +18,8 @@
 @endif
 
 <form action="/morning" method="get">
-     <input type="text" name="morning">
+@csrf
+     <input type="text" name="morning" value="{{ old('morning', $keyword) }}">
      <input type="submit" value="検索">
 </form>
 
@@ -41,7 +42,7 @@
 </div>
 
 <div class="row justify-content-center">
-     {{ $mornings->appends(['morning' => Request::get('morning')])->links() }}
+     {{ $mornings->appends(['morning' => $keyword])->links() }}
 </div>
 
 @endsection

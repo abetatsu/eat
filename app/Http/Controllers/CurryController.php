@@ -15,6 +15,8 @@ class CurryController extends Controller
      */
     public function index(Request $request)
     {
+        $keyword = $request->get('curry');
+        
         if($request->has('curry')) {
 
             $validator = Validator::make($request->all(),
@@ -22,7 +24,7 @@ class CurryController extends Controller
                 'curry' => 'required|max:10',
                 ],
                 [
-                    'curry.required' => 'キーワードを入力してください',
+                'curry.required' => 'キーワードを入力してください',
                 ]);
 
             if($validator->fails())
@@ -30,14 +32,14 @@ class CurryController extends Controller
                 return redirect()->back()->withErrors($validator->errors())->withInput();
             }
 
-            $curries = Curry::where('name', 'like', '%'.$request->get('curry').'%')->paginate(10);
+            $curries = Curry::where('name', 'like', '%'.$keyword.'%')->paginate(10);
 
         } else {
             
             $curries = Curry::paginate(10);
         }
         
-        return view('curry.index', ['curries' => $curries]);
+        return view('curry.index', ['curries' => $curries])->with('keyword', $keyword);
     }
 
     /**

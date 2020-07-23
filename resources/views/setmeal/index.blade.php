@@ -18,7 +18,8 @@
 @endif
 
 <form action="/setmeal" method="get">
-     <input type="text" name="setmeal">
+@csrf
+     <input type="text" name="setmeal" value="{{ old('setmeal', $keyword) }}">
      <input type="submit" value="検索">
 </form>
 
@@ -41,7 +42,7 @@
 </div>
 
 <div class="row justify-content-center">
-     {{ $setmeals->appends(['setmeal' => Request::get('setmeal')])->links() }}
+     {{ $setmeals->appends(['setmeal' => $keyword])->links() }}
 </div>
 
 @endsection

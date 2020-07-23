@@ -118,7 +118,7 @@ return [
 
     'attributes' => [
         'beef' => '検索',
-        'currry' => '検索',
+        'curry' => '検索',
         'other' => '検索',
         'setmeal' => '検索',
         'sidemenu' => '検索',

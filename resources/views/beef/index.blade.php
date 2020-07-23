@@ -19,7 +19,7 @@
 @endif
 
 <form method="GET" action="/beef">
-    <input type="text" name="beef">
+    <input type="text" name="beef" value="{{ old('beef', $keyword) }}">
     <input type="submit" value="商品検索">
 </form>
 
@@ -42,7 +42,7 @@
 </div>
 
 <div class="row justify-content-center">
-     {{ $beefs->appends(['beef' => Request::get('beef')])->onEachSide(5)->links() }}
+     {{ $beefs->appends(['beef' => $keyword])->onEachSide(5)->links() }}
 </div>
 
 @endsection

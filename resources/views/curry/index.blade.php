@@ -18,7 +18,7 @@
 @endif
 
 <form action="/curry" method="action">
-  <input type="text" name="curry">
+  <input type="text" name="curry" value="{{ old('curry', $keyword) }}">
   <input type="submit" value="商品検索">
 </form>
 
@@ -41,7 +41,7 @@
 </div>
 
 <div class="row justify-content-center">
-     {{ $curries->appends(['curry' => Request::get('curry')])->links() }}
+     {{ $curries->appends(['curry' => $keyword])->links() }}
 </div>
 
 @endsection

@@ -15,7 +15,7 @@ class MorningController extends Controller
      */
     public function index(Request $request)
     {
-
+        $keyword = $request->get('morning');
 
             if($request->has('morning')) {
 
@@ -32,13 +32,13 @@ class MorningController extends Controller
                     return redirect()->back()->withErrors($validator->errors())->withInput();
                 }
 
-            $mornings = Morning::where('name', 'like', '%'.$request->get('morning').'%')->paginate(12);
+            $mornings = Morning::where('name', 'like', '%'.$keyword.'%')->paginate(12);
 
         } else {
             $mornings = Morning::paginate(12);
         }
         
-        return view('morning.index', ['mornings' => $mornings]);
+        return view('morning.index', ['mornings' => $mornings])->with('keyword', $keyword);
     }
 
     /**

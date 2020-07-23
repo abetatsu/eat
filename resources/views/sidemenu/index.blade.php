@@ -18,7 +18,8 @@
 @endif
 
 <form method="get" action="/sidemenu">
-     <input type="text" name="sidemenu">
+@csrf
+     <input type="text" name="sidemenu" value="{{ old('sidemenu', $keyword) }}">
      <input type="submit" value="検索">
 </form>
 

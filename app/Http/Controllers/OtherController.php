@@ -15,6 +15,7 @@ class OtherController extends Controller
      */
     public function index(Request $request)
     {
+        $keyword = $request->get('other');
 
             if($request->has('other')) {
 
@@ -31,12 +32,12 @@ class OtherController extends Controller
                     return redirect()->back()->withErrors($validator->errors())->withInput();
                 }
         
-            $others = Other::where('name', 'like', '%'.$request->get('other').'%')->paginate(12);
+            $others = Other::where('name', 'like', '%'.$keyword.'%')->paginate(12);
         } else {
             $others = Other::paginate(12);
         }
         
-        return view('other.index', ['others' => $others]);
+        return view('other.index', ['others' => $others])->with('keyword', $keyword);
     }
 
     /**
