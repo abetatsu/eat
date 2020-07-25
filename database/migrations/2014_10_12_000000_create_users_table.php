@@ -26,6 +26,11 @@ class CreateUsersTable extends Migration
             $table->decimal('totalFat')->default(0);
             $table->decimal('totalCarb')->default(0);
             $table->decimal('totalSodium')->default(0);
+            $table->integer('totalWeekCalories')->default(0);
+            $table->decimal('totalWeekProtein')->default(0);
+            $table->decimal('totalWeekFat')->default(0);
+            $table->decimal('totalWeekCarb')->default(0);
+            $table->decimal('totalWeekSodium')->default(0);
             $table->timestamps();
         });
     }

@@ -36,6 +36,18 @@ class Kernel extends ConsoleKernel
                 'updated_at' => now()
          ]);
         })->daily();
+
+        $schedule->call(function() {
+            \DB::table('users')->where('id', '>', 0)
+               ->update([
+                   'totalWeekCalories' => 0,
+                   'totalWeekProtein' => 0,
+                   'totalWeekFat' => 0,
+                   'totalWeekCarb' => 0,
+                   'totalWeekSodium' => 0,
+                   'updated_at' => now()
+            ]);
+           })->weekly();
     }
 
     /**
