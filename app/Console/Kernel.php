@@ -47,7 +47,7 @@ class Kernel extends ConsoleKernel
                    'totalWeekSodium' => 0,
                    'updated_at' => now()
             ]);
-           })->weekly();
+           })->weeklyOn(2, '16:00');
     }
 
     /**
