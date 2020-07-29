@@ -61,18 +61,18 @@
   ＊あくまでも目安です
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">1週間トータル摂取カロリー：17500kcal</li>
-    <li class="list-group-item">1週間総摂取タンパク質：700g</li>
-    <li class="list-group-item">1週間総摂取脂質：560g</li>
-    <li class="list-group-item">1週間総摂取炭水化物：2450g</li>
-    <li class="list-group-item">1週間総摂取塩分：56g</li>
+    <li class="list-group-item">1週間トータル摂取カロリー：約17500kcal</li>
+    <li class="list-group-item">1週間総摂取タンパク質：約700g</li>
+    <li class="list-group-item">1週間総摂取脂質：約560g</li>
+    <li class="list-group-item">1週間総摂取炭水化物：約2450g</li>
+    <li class="list-group-item">1週間総摂取塩分：約56g</li>
   </ul>
 </div>
 </div>
 <div class="col-sm-6">
 <div class="card" >
   <div class="card-header">
-  {{ $user->name }}さんの1週間の記録
+  {{ $user->name }}さんの1週間の記録(月曜1時〜月曜1時)
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">1週間トータル摂取カロリー：{{ $user->totalWeekCalories }}kcal</li>
