@@ -54,6 +54,10 @@
                                 </li>
                             @endif
                         @else
+                        <form action="{{ route('home') }}" method="get">
+                            @csrf
+                            <button class="btn btn-primary">MENU一覧へ</button>
+                            </form>
                         @auth
                         <form action="/user/{{ Auth::user()->id }}" method="get">
                             @csrf
