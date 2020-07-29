@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Setmeal;
 use Illuminate\Http\Request;
 use Validator;
+use Auth;
 
 class SetmealController extends Controller
 {
@@ -71,7 +72,33 @@ class SetmealController extends Controller
      */
     public function show(Setmeal $setmeal)
     {
-        return view('setmeal.show', ['setmeal' => $setmeal]);
+        $user = Auth::user();
+        $dayNeedsCalories = 2500 - $user->totalCalories;
+        $dayNeedsProtein = 100 - $user->totalProtein;
+        $dayNeedsFat = 80 - $user->totalFat;
+        $dayNeedsCarb = 350 - $user->totalCarb;
+        $dayNeedsSodium = 8 - $user->totalSodium;
+        $weekNeedsCalories = 17500 - $user->totalWeekCalories;
+        $weekNeedsProtein = 700 - $user->totalWeekProtein;
+        $weekNeedsFat = 560 - $user->totalWeekFat;
+        $weekNeedsCarb = 2450 - $user->totalWeekCarb;
+        $weekNeedsSodium = 56 - $user->totalWeekSodium;
+
+        return view('setmeal.show', 
+        [
+            'setmeal' => $setmeal,
+            'user' => $user,
+            'dayNeedsCalories' => $dayNeedsCalories,
+            'dayNeedsProtein' => $dayNeedsProtein,
+            'dayNeedsFat' => $dayNeedsFat,
+            'dayNeedsCarb' => $dayNeedsCarb,
+            'dayNeedsSodium' => $dayNeedsSodium,
+            'weekNeedsCalories' => $weekNeedsCalories,
+            'weekNeedsProtein' => $weekNeedsProtein,
+            'weekNeedsFat' => $weekNeedsFat,
+            'weekNeedsCarb' => $weekNeedsCarb,
+            'weekNeedsSodium' => $weekNeedsSodium
+        ]);
     }
 
     /**
