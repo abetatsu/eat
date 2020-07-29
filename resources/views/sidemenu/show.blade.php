@@ -32,7 +32,7 @@
   <div class="col-sm-4">
     <div class="card">
       <div class="card-header">
-      {{ $user->name }}さんの１日の記録
+      {{ $user->name }}さんの本日({{ $user->updated_at->format('Y/m/d') }})の記録
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
@@ -81,7 +81,7 @@
     <div class="col-sm-4">
     <div class="card">
       <div class="card-header">
-      {{ $user->name }}さんの１週間の記録
+      {{ $user->name }}さんの1週間の記録(月曜1時〜月曜1時)
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
