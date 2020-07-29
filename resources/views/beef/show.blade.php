@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-
+<form action="/beef" method="get">
+  @csrf
+<button class="btn btn-primary">牛丼一覧に戻る</button>
+</form>
 
 <div class="card" style="width: 18rem;">
   <div class="card-header">
@@ -15,10 +18,6 @@
     <li class="list-group-item">炭水化物：{{ $beef->carb }}g</li>
     <li class="list-group-item">塩分：{{ $beef->sodium }}g</li>
     <li class="list-group-item">
-     <form action="/beef" method="get">
-     @csrf
-     <button class="btn btn-primary">牛丼一覧に戻る</button>
-     </form>
      <form method="post" action="/user">
           @csrf
       <input type="hidden" name="beef_id" value="{{ $beef->id }}">

@@ -2,6 +2,10 @@
 
 @section('content')
 
+<form action="/sidemenu" method="get">
+@csrf
+<button class="btn btn-primary">サイドメニュー 一覧に戻る</button>
+</form>
 
 <div class="card" style="width: 18rem;">
   <div class="card-header">
@@ -15,10 +19,6 @@
     <li class="list-group-item">炭水化物：{{ $sidemenu->carb }}g</li>
     <li class="list-group-item">塩分：{{ $sidemenu->sodium }}g</li>
     <li class="list-group-item">
-     <form action="/sidemenu" method="get">
-     @csrf
-     <button class="btn btn-primary">サイドメニュー 一覧に戻る</button>
-     </form>
      <form method="post" action="/user">
           @csrf
         <input type="hidden" name="sidemenu_id" value="{{ $sidemenu->id }}">

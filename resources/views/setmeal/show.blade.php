@@ -2,6 +2,10 @@
 
 @section('content')
 
+<form action="/setmeal" method="get">
+@csrf
+<button class="btn btn-primary">定食一覧に戻る</button>
+</form>
 
 <div class="card" style="width: 18rem;">
   <div class="card-header">
@@ -15,10 +19,6 @@
     <li class="list-group-item">炭水化物：{{ $setmeal->carb }}g</li>
     <li class="list-group-item">塩分：{{ $setmeal->sodium }}g</li>
     <li class="list-group-item">
-     <form action="/setmeal" method="get">
-     @csrf
-     <button class="btn btn-primary">定食一覧に戻る</button>
-     </form>
      <form method="post" action="/user">
           @csrf
      <input type="hidden" name="setmeal_id" value="{{ $setmeal->id }}">

@@ -2,6 +2,10 @@
 
 @section('content')
 
+<form action="/morning" method="get">
+@csrf
+<button class="btn btn-primary">朝食一覧に戻る</button>
+</form>
 
 <div class="card" style="width: 18rem;">
   <div class="card-header">
@@ -15,10 +19,6 @@
     <li class="list-group-item">炭水化物：{{ $morning->carb }}g</li>
     <li class="list-group-item">塩分：{{ $morning->sodium }}g</li>
     <li class="list-group-item">
-     <form action="/morning" method="get">
-     @csrf
-     <button class="btn btn-primary">朝食一覧に戻る</button>
-     </form>
      <form method="post" action="/user">
           @csrf
      <input type="hidden" name="morning_id" value="{{ $morning->id }}">
