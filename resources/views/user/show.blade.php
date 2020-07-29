@@ -39,7 +39,7 @@
 <div class="col-sm-6">
 <div class="card">
   <div class="card-header">
-  本日({{ $user->updated_at->format('Y/m/d') }})の記録
+  {{ $user->name }}さんの本日({{ $user->updated_at->format('Y/m/d') }})の記録
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">トータル摂取カロリー：{{ $user->totalCalories }}kcal</li>
@@ -56,7 +56,7 @@
 <div class="col-sm-6">
 <div class="card" >
   <div class="card-header">
-  １日必要な栄養素の目安(成人男性)
+  １週間に必要な栄養素の目安(成人男性)
   <br>
   ＊あくまでも目安です
   </div>
@@ -72,7 +72,7 @@
 <div class="col-sm-6">
 <div class="card" >
   <div class="card-header">
-  1週間の記録
+  {{ $user->name }}さんの1週間の記録
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">1週間トータル摂取カロリー：{{ $user->totalWeekCalories }}kcal</li>
