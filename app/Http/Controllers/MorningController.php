@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Morning;
 use Illuminate\Http\Request;
 use Validator;
+use Auth;
 
 class MorningController extends Controller
 {
@@ -70,7 +71,33 @@ class MorningController extends Controller
      */
     public function show(Morning $morning)
     {
-        return view('morning.show', ['morning'=> $morning]);
+        $user = Auth::user();
+        $dayNeedsCalories = 2500 - $user->totalCalories;
+        $dayNeedsProtein = 100 - $user->totalProtein;
+        $dayNeedsFat = 80 - $user->totalFat;
+        $dayNeedsCarb = 350 - $user->totalCarb;
+        $dayNeedsSodium = 8 - $user->totalSodium;
+        $weekNeedsCalories = 17500 - $user->totalWeekCalories;
+        $weekNeedsProtein = 700 - $user->totalWeekProtein;
+        $weekNeedsFat = 560 - $user->totalWeekFat;
+        $weekNeedsCarb = 2450 - $user->totalWeekCarb;
+        $weekNeedsSodium = 56 - $user->totalWeekSodium;
+
+        return view('morning.show', 
+        [
+            'morning'=> $morning,
+            'user' => $user,
+            'dayNeedsCalories' => $dayNeedsCalories,
+            'dayNeedsProtein' => $dayNeedsProtein,
+            'dayNeedsFat' => $dayNeedsFat,
+            'dayNeedsCarb' => $dayNeedsCarb,
+            'dayNeedsSodium' => $dayNeedsSodium,
+            'weekNeedsCalories' => $weekNeedsCalories,
+            'weekNeedsProtein' => $weekNeedsProtein,
+            'weekNeedsFat' => $weekNeedsFat,
+            'weekNeedsCarb' => $weekNeedsCarb,
+            'weekNeedsSodium' => $weekNeedsSodium
+        ]);
     }
 
     /**
