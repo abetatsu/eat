@@ -17,8 +17,10 @@
 </div>
 
 <div class="row my-5">
+
 <div class="col-sm-6">
 <div class="card" >
+  @if($user->gender === 'male')
   <div class="card-header">
   １日必要な栄養素の目安(成人男性)
   <br>
@@ -31,6 +33,22 @@
     <li class="list-group-item">総摂取炭水化物：約350g</li>
     <li class="list-group-item">総摂取塩分：約8g</li>
   </ul>
+  @endif
+
+  @if($user->gender === 'female')
+  <div class="card-header">
+  １日必要な栄養素の目安(成人女性)
+  <br>
+  ＊あくまでも目安です
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">トータル摂取カロリー：約1800kcal</li>
+    <li class="list-group-item">総摂取タンパク質：約70g</li>
+    <li class="list-group-item">総摂取脂質：約50g</li>
+    <li class="list-group-item">総摂取炭水化物：約290g</li>
+    <li class="list-group-item">総摂取塩分：約7g</li>
+  </ul>
+  @endif
 </div>
 </div>
 
@@ -55,6 +73,8 @@
 <div class="row">
 <div class="col-sm-6">
 <div class="card" >
+
+  @if($user->gender === 'male')
   <div class="card-header">
   １週間に必要な栄養素の目安(成人男性)
   <br>
@@ -67,8 +87,26 @@
     <li class="list-group-item">1週間総摂取炭水化物：約2450g</li>
     <li class="list-group-item">1週間総摂取塩分：約56g</li>
   </ul>
+  @endif
+  
+  @if($user->gender === 'female')
+  <div class="card-header">
+  １週間に必要な栄養素の目安(成人女性)
+  <br>
+  ＊あくまでも目安です
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">1週間トータル摂取カロリー：約12600kcal</li>
+    <li class="list-group-item">1週間総摂取タンパク質：約490g</li>
+    <li class="list-group-item">1週間総摂取脂質：約350g</li>
+    <li class="list-group-item">1週間総摂取炭水化物：約2030g</li>
+    <li class="list-group-item">1週間総摂取塩分：約49g</li>
+  </ul>
+  @endif
+
 </div>
 </div>
+
 <div class="col-sm-6">
 <div class="card" >
   <div class="card-header">

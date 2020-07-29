@@ -26,6 +26,23 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label>
+
+                            <div class="col-md-6"> 
+                                <label for="male">Male</label>
+                                <input id="male" type="radio" name="gender" value="male">
+                                <label for="female">Female</label>
+                                <input id="female" type="radio" name="gender" value="female">
+
+                                @if($errors->has('gender'))
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $errors->first('gender') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
