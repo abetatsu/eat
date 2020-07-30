@@ -125,7 +125,7 @@ class UserController extends Controller
         
         $user = Auth::user();
 
-        if($request->has('user_id')) {
+        if($request->has('beef_id')) {
             $beef = Beef::find($request->beef_id);
 
             $user->totalPrice += $beef->price;

@@ -24,7 +24,7 @@
               @csrf
           <input type="hidden" name="beef_id" value="{{ $beef->id }}">
           <button type="submit" class="btn btn-primary">注文</button>
-          </form>
+        </form>
         </li>
       </ul>
     </div>
