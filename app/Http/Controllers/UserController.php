@@ -60,7 +60,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         $user = Auth::user();
-        $orders = User::find($user->id)->orders()->orderBy('created_at', 'desc')->get();
+        $orders = User::find($user->id)->orders()->orderBy('created_at', 'desc')->take(4)->get();
 
         if($user->gender === 'male')
         {
