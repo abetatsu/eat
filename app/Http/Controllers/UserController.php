@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use DateTime;
 use App\Beef;
 use App\Curry;
 use App\Morning;
 use App\Other;
 use App\Setmeal;
 use App\Sidemenu;
+use App\Order;
 
 class UserController extends Controller
 {
@@ -58,6 +60,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         $user = Auth::user();
+        $orders = User::find($user->id)->orders()->orderBy('created_at', 'desc')->get();
 
         if($user->gender === 'male')
         {
@@ -89,6 +92,7 @@ class UserController extends Controller
         return view('user.show', 
         [
             'user' => $user,
+            'orders' => $orders,
             'dayNeedsCalories' => $dayNeedsCalories,
             'dayNeedsProtein' => $dayNeedsProtein,
             'dayNeedsFat' => $dayNeedsFat,
@@ -122,12 +126,21 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        
         $user = Auth::user();
 
         if($request->has('beef_id')) {
             $beef = Beef::find($request->beef_id);
 
+            $order = Order::create(
+                [
+                    'user_id' => $user->id,
+                    'order_name' => $beef->name,
+                    'order_price' => $beef->price,
+                    'created_at' => new DateTime(),
+                    'updated_at' => new DateTime(),
+                ]);
+
+            
             $user->totalPrice += $beef->price;
             $user->totalCalories += $beef->calories;
             $user->totalProtein += $beef->protein;
@@ -144,6 +157,15 @@ class UserController extends Controller
         } else if($request->has('curry_id')) {
 
             $curry = Curry::find($request->curry_id);
+
+            $order = Order::create(
+                [
+                    'user_id' => $user->id,
+                    'order_name' => $curry->name,
+                    'order_price' => $curry->price,
+                    'created_at' => new DateTime(),
+                    'updated_at' => new DateTime(),
+                ]);
 
             $user->totalPrice += $curry->price;
             $user->totalCalories += $curry->calories;
@@ -162,6 +184,15 @@ class UserController extends Controller
 
             $morning = Morning::find($request->morning_id);
 
+            $order = Order::create(
+                [
+                    'user_id' => $user->id,
+                    'order_name' => $morning->name,
+                    'order_price' => $morning->price,
+                    'created_at' => new DateTime(),
+                    'updated_at' => new DateTime(),
+                ]);
+
             $user->totalPrice += $morning->price;
             $user->totalCalories += $morning->calories;
             $user->totalProtein += $morning->protein;
@@ -178,6 +209,15 @@ class UserController extends Controller
         } else if($request->has('other_id')) {
 
             $other = Other::find($request->other_id);
+
+            $order = Order::create(
+                [
+                    'user_id' => $user->id,
+                    'order_name' => $other->name,
+                    'order_price' => $other->price,
+                    'created_at' => new DateTime(),
+                    'updated_at' => new DateTime(),
+                ]);
 
             $user->totalPrice += $other->price;
             $user->totalCalories += $other->calories;
@@ -196,6 +236,15 @@ class UserController extends Controller
 
             $setmeal = Setmeal::find($request->setmeal_id);
 
+            $order = Order::create(
+                [
+                    'user_id' => $user->id,
+                    'order_name' => $setmeal->name,
+                    'order_price' => $setmeal->price,
+                    'created_at' => new DateTime(),
+                    'updated_at' => new DateTime(),
+                ]);
+
             $user->totalPrice += $setmeal->price;
             $user->totalCalories += $setmeal->calories;
             $user->totalProtein += $setmeal->protein;
@@ -213,6 +262,15 @@ class UserController extends Controller
 
             $sidemenu = Sidemenu::find($request->sidemenu_id);
 
+            $order = Order::create(
+                [
+                    'user_id' => $user->id,
+                    'order_name' => $sidemenu->name,
+                    'order_price' => $sidemenu->price,
+                    'created_at' => new DateTime(),
+                    'updated_at' => new DateTime(),
+                ]);
+
             $user->totalPrice += $sidemenu->price;
             $user->totalCalories += $sidemenu->calories;
             $user->totalProtein += $sidemenu->protein;
@@ -228,7 +286,7 @@ class UserController extends Controller
         }
 
 
-        
+        $order->save();
         
         $user->save();
         
