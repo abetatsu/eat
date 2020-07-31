@@ -4,16 +4,30 @@
 @section('content')
 
 <div class="row">
-<div class="col-sm-7">
-<div class="card">
-＊1日の栄養素は深夜0時にリセットされます。
-＊1週間の栄養素は毎週月曜日の深夜1時にリセットされます。
-<br>
-使ったお金はリセットされません。
-<br>
-牛丼屋に使った金額合計：{{ $user->totalPrice }}円
-</div>
-</div>
+  <div class="col-sm-6">
+    <div class="card">
+      ＊1日の栄養素は深夜0時にリセットされます。
+      ＊1週間の栄養素は毎週月曜日の深夜1時にリセットされます。
+      <br>
+      使ったお金はリセットされません。
+      <br>
+      牛丼屋に使った金額合計：{{ $user->totalPrice }}円
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header">
+        {{ $user->name }}さんの注文履歴
+      </div>
+      @foreach($orders as $order)
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            {{ $order->order_name }}　¥{{ $order->order_price }}　{{ $order->created_at->format('Y年n月d日　G時i分') }}
+        </li>
+      </ul>
+      @endforeach
+    </div>
+  </div>
 </div>
 
 <div class="row my-5">
