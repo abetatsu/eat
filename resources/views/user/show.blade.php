@@ -14,22 +14,37 @@
       牛丼屋に使った金額合計：{{ $user->totalPrice }}円
     </div>
   </div>
-  <div class="col-sm-6">
+
+
+  <div class="accordion col-sm-6" id="accordionExample">
     <div class="card">
-      <div class="card-header">
-        {{ $user->name }}さんの注文履歴
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          {{ $user->name }}さんの注文履歴
+          </button>
+        </h5>
       </div>
-      @foreach($orders as $order)
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-            {{ $order->order_name }}　¥{{ $order->order_price }}　{{ $order->created_at->format('Y年n月d日　G時i分') }}
-        </li>
-      </ul>
-      @endforeach
+
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            @foreach($orders as $order)
+            <li class="list-group-item">
+                {{ $order->order_name }}　¥{{ $order->order_price }}　{{ $order->created_at->format('Y年n月d日　G時i分') }}
+            </li>
+            @endforeach
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
+
+
+
+  
+</div>
 <div class="row my-5">
 
 <div class="col-sm-6">

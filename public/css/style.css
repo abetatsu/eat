@@ -23,5 +23,18 @@
    }
 
    .center {
-     
+
+   }
+
+   button {
+     outline: none;
+   }
+
+   .btn:focus {
+     outline: none;
+     text-decoration: none;
+   }
+
+  *:focus {
+     outline: none;
    }
