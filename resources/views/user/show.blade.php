@@ -35,6 +35,10 @@
             </li>
             @endforeach
           </ul>
+          <form method="get" action="/order">
+          @csrf
+            <button class="btn btn-primary">さらに履歴をみる</button>
+          </form>
         </div>
       </div>
     </div>
