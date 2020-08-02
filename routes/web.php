@@ -32,6 +32,8 @@ Route::get('/sidemenu/{sidemenu}', 'SidemenuController@show')->middleware('auth'
 Route::post('/user', 'UserController@update');
 Route::get('/user/{user}', 'UserController@show')->middleware('auth');
 
+Route::get('/order', 'OrderController@index')->middleware('auth');
+
 
 Auth::routes();
 
