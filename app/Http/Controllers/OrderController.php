@@ -15,7 +15,7 @@ class OrderController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $orders = $user->orders()->orderBy('created_at', 'desc')->get();
+        $orders = $user->orders()->orderBy('created_at', 'desc')->paginate(14);
 
         return view('order.index', ['user' => $user, 'orders' => $orders]);
 

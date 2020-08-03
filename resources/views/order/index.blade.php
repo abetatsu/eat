@@ -15,4 +15,8 @@
   @endforeach
   </ul>
 </div>
+
+<div class="row justify-content-center">
+     {{ $orders->links() }}
+</div>
 @endsection
