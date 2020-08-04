@@ -2,6 +2,21 @@
 
 @section('content')
 
+@if ($errors->any())
+<div class="alert alert-danger">
+    @foreach($errors->all() as $error)
+   {{ $error }}
+    @endforeach
+</div>
+@endif
+
+<form action="/order" method="get">
+@csrf
+     <input type="text" name="order" value="{{ old('order', $keyword) }}">
+     <input type="submit" value="検索">
+</form>
+
+
 <div class="card">
   <div class="card-body">
   こちらは{{ $user->name }}さんのこれまでの注文履歴です

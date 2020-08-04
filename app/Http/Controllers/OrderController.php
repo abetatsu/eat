@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Validator;
 
 class OrderController extends Controller
 {
@@ -12,12 +13,37 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
+
+        $keyword = $request->get('order');
+        
+        if($request->has('order')) {
+
+            $validator = Validator::make($request->all(),
+                [
+                'order' => 'required|max:10',
+                ],
+                [
+                    'order.required' => 'キーワードを入力してください',
+                ]);
+
+            if($validator->fails())
+            {
+                return redirect()->back()->withErrors($validator->errors())->withInput();
+            }
+    
+        $orders = $user->orders()->where('order_name', 'like', '%'.$keyword.'%')->orderBy('created_at', 'desc')->paginate(14);
+        return view('order.index', ['user' => $user, 'orders' => $orders, 'keyword' => $keyword]);
+
+    } else {
+        
         $orders = $user->orders()->orderBy('created_at', 'desc')->paginate(14);
 
-        return view('order.index', ['user' => $user, 'orders' => $orders]);
+        return view('order.index', ['user' => $user, 'orders' => $orders, 'keyword' => $keyword]);
+    }
+
 
     }
 
