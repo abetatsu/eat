@@ -18,7 +18,7 @@
 @endif
 
 <form action="/curry" method="action">
-  <input type="text" name="curry" value="{{ old('curry', $keyword) }}">
+  <input type="text" name="curry" value="{{ old('curry', $keyword) }}" placeholder="入力してください">
   <input type="submit" value="商品検索">
 </form>
 

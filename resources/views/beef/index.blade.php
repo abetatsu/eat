@@ -19,7 +19,7 @@
 @endif
 
 <form method="GET" action="/beef">
-    <input type="text" name="beef" value="{{ old('beef', $keyword) }}">
+    <input type="text" name="beef" value="{{ old('beef', $keyword) }}" placeholder="入力してください">
     <input type="submit" value="商品検索">
 </form>
 

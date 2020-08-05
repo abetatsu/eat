@@ -34,7 +34,12 @@ class OrderController extends Controller
                 return redirect()->back()->withErrors($validator->errors())->withInput();
             }
     
-        $orders = $user->orders()->where('order_name', 'like', '%'.$keyword.'%')->orderBy('created_at', 'desc')->paginate(14);
+        $orders = $user->orders()
+        ->where('order_name', 'like', '%'.$keyword.'%')
+        ->orWhere('order_price', 'like', '%'.$keyword.'%')
+        ->orWhere('created_at', 'like', '%'.$keyword.'%')
+        ->orderBy('created_at', 'desc')->paginate(14);
+        
         return view('order.index', ['user' => $user, 'orders' => $orders, 'keyword' => $keyword]);
 
     } else {
