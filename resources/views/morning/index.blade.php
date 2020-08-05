@@ -19,7 +19,7 @@
 
 <form action="/morning" method="get">
 @csrf
-     <input type="text" name="morning" value="{{ old('morning', $keyword) }}">
+     <input type="text" name="morning" value="{{ old('morning', $keyword) }}" placeholder="入力してください">
      <input type="submit" value="検索">
 </form>
 

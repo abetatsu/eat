@@ -31,7 +31,7 @@
           <ul class="list-group list-group-flush">
             @foreach($orders as $order)
             <li class="list-group-item">
-                {{ $order->order_name }}　¥{{ $order->order_price }}　{{ $order->created_at->format('Y年n月d日　G時i分') }}
+                {{ $order->order_name }}　¥{{ $order->order_price }}　{{ $order->created_at->format('Y年n月j日　G時i分') }}
             </li>
             @endforeach
           </ul>

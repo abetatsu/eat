@@ -19,7 +19,7 @@
 
 <form action="/setmeal" method="get">
 @csrf
-     <input type="text" name="setmeal" value="{{ old('setmeal', $keyword) }}">
+     <input type="text" name="setmeal" value="{{ old('setmeal', $keyword) }}" placeholder="入力してください">
      <input type="submit" value="検索">
 </form>
 

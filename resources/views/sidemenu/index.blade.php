@@ -19,7 +19,7 @@
 
 <form method="get" action="/sidemenu">
 @csrf
-     <input type="text" name="sidemenu" value="{{ old('sidemenu', $keyword) }}">
+     <input type="text" name="sidemenu" value="{{ old('sidemenu', $keyword) }}" placeholder="入力してください">
      <input type="submit" value="検索">
 </form>
 
