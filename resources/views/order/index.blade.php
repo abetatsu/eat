@@ -23,7 +23,7 @@
   こちらは{{ $user->name }}さんのこれまでの注文履歴です
     <form method="get" action="/order">
       @csrf
-    <button class="btn btn-primary">全ての注文履歴に戻る</button>
+    <button class="btn btn-primary">全ての注文履歴を表示</button>
     </form>
   </div>
 </div>
