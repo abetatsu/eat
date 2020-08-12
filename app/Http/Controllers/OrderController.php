@@ -17,37 +17,263 @@ class OrderController extends Controller
     {
         $user = Auth::user();
 
-        $keyword = $request->get('order');
-        
-        if($request->has('order')) {
+        $date = $request->get('date');
+        $time = $request->get('time');
+        $item = $request->get('item');
+        $amount = $request->get('amount');
 
-            $validator = Validator::make($request->all(),
+        if(!empty($date) && !empty($time) && !empty($item) && !empty($amount))
+        {
+    
+            $orders = $user->orders()
+            ->where('created_at', 'like', '%'.$date.'%')
+            ->where('created_at', 'like', '%'.$time.'%')
+            ->where('order_name', 'like', '%'.$item.'%')
+            ->where('order_price', $amount)
+            ->orderBy('created_at', 'desc')
+            ->paginate(14);
+
+            return view('order.index', 
+            [
+                'user' => $user,
+                'orders' => $orders
+            ]);
+
+        } elseif (!empty($date) && !empty($time) && !empty($item)) {
+
+
+            $orders = $user->orders()
+            ->where('created_at', 'like', '%'.$date.'%')
+            ->where('created_at', 'like', '%'.$time.'%')
+            ->where('order_name', 'like', '%'.$item.'%')
+            ->orderBy('created_at', 'desc')
+            ->paginate(14);
+
+            return view('order.index', 
+            [
+                'user' => $user,
+                'orders' => $orders
+            ]);
+
+        } elseif(!empty($date) && !empty($time) && !empty($amount)) {
+
+            $orders = $user->orders()
+            ->where('created_at', 'like', '%'.$date.'%')
+            ->where('created_at', 'like', '%'.$time.'%')
+            ->where('order_price', $amount)
+            ->orderBy('created_at', 'desc')
+            ->paginate(14);
+
+            return view('order.index', 
+            [
+                'user' => $user,
+                'orders' => $orders
+            ]);
+
+        } elseif(!empty($time) && !empty($item) && !empty($amount)) {
+
+
+            $orders = $user->orders()
+            ->where('created_at', 'like', '%'.$time.'%')
+            ->where('order_name', 'like', '%'.$item.'%')
+            ->where('order_price', $amount)
+            ->orderBy('created_at', 'desc')
+            ->paginate(14);
+
+            return view('order.index', 
+            [
+                'user' => $user,
+                'orders' => $orders
+            ]);
+
+        } elseif(!empty($date) && !empty($item) && !empty($amount)) {
+
+            $orders = $user->orders()
+            ->where('created_at', 'like', '%'.$date.'%')
+            ->where('order_name', 'like', '%'.$item.'%')
+            ->where('order_price', $amount)
+            ->orderBy('created_at', 'desc')
+            ->paginate(14);
+
+            return view('order.index', 
+            [
+                'user' => $user,
+                'orders' => $orders
+            ]);
+
+        } elseif(!empty($date) && !empty($time)) {
+
+            $orders = $user->orders()
+            ->where('created_at', 'like', '%'.$date.'%')
+            ->where('created_at', 'like', '%'.$time.'%')
+            ->orderBy('created_at', 'desc')
+            ->paginate(14);
+
+            return view('order.index', 
+            [
+                'user' => $user,
+                'orders' => $orders
+            ]);
+
+        } elseif(!empty($date) && !empty($item)) {
+
+            $orders = $user->orders()
+            ->where('created_at', 'like', '%'.$date.'%')
+            ->where('order_name', 'like', '%'.$item.'%')
+            ->orderBy('created_at', 'desc')
+            ->paginate(14);
+
+            return view('order.index', 
+            [
+                'user' => $user,
+                'orders' => $orders
+            ]);
+
+        } elseif(!empty($date) && !empty($amount)) {
+
+            $orders = $user->orders()
+            ->where('created_at', 'like', '%'.$date.'%')
+            ->where('order_price', $amount)
+            ->orderBy('created_at', 'desc')
+            ->paginate(14);
+
+            return view('order.index', 
+            [
+                'user' => $user,
+                'orders' => $orders
+            ]);
+
+        } elseif(!empty($time) && !empty($item)) {
+
+            $orders = $user->orders()
+            ->where('created_at', 'like', '%'.$time.'%')
+            ->where('order_name', 'like', '%'.$item.'%')
+            ->orderBy('created_at', 'desc')
+            ->paginate(14);
+
+            return view('order.index', 
+            [
+                'user' => $user,
+                'orders' => $orders
+            ]);
+
+        } elseif(!empty($time) && !empty($amount)) {
+
+            $orders = $user->orders()
+            ->where('created_at', 'like', '%'.$time.'%')
+            ->where('order_price', $amount)
+            ->orderBy('created_at', 'desc')
+            ->paginate(14);
+
+            return view('order.index', 
+            [
+                'user' => $user,
+                'orders' => $orders
+            ]);
+
+        } elseif(!empty($item) && !empty($amount)) {
+
+            $orders = $user->orders()
+            ->where('order_name', 'like', '%'.$item.'%')
+            ->where('order_price', $amount)
+            ->orderBy('created_at', 'desc')
+            ->paginate(14);
+
+            return view('order.index', 
+            [
+                'user' => $user,
+                'orders' => $orders
+            ]);
+
+        } elseif(!empty($date) && empty($time) && empty($item) && empty($amount)) {
+
+            $orders = $user->orders()
+            ->where('created_at', 'like', '%'.$date.'%')
+            ->orderBy('created_at', 'desc')
+            ->paginate(14);
+
+            return view('order.index', 
+            [
+                'user' => $user,
+                'orders' => $orders
+            ]);
+
+        } elseif(empty($date) && !empty($time) && empty($item) && empty($amount)) {
+
+            $orders = $user->orders()
+            ->where('created_at', 'like', '%'.$time.'%')
+            ->orderBy('created_at', 'desc')
+            ->paginate(14);
+
+            return view('order.index', 
+            [
+                'user' => $user,
+                'orders' => $orders
+            ]);
+        
+        
+            } elseif(empty($date) && empty($time) && !empty($item) && empty($amount)) {
+
+                $orders = $user->orders()
+                ->where('order_name', 'like', '%'.$item.'%')
+                ->orderBy('created_at', 'desc')
+                ->paginate(14);
+    
+                return view('order.index', 
                 [
-                'order' => 'required|max:10',
-                ],
-                [
-                    'order.required' => 'キーワードを入力してください',
+                    'user' => $user,
+                    'orders' => $orders
                 ]);
 
-            if($validator->fails())
-            {
-                return redirect()->back()->withErrors($validator->errors())->withInput();
-            }
+            } elseif(empty($date) && empty($time) && empty($item) && !empty($amount)) {
+
+                $orders = $user->orders()
+                ->where('order_price', $amount)
+                ->orderBy('created_at', 'desc')
+                ->paginate(14);
     
-        $orders = $user->orders()
-        ->where('order_name', 'like', '%'.$keyword.'%')
-        ->orWhere('order_price', 'like', '%'.$keyword.'%')
-        ->orWhere('created_at', 'like', '%'.$keyword.'%')
-        ->orderBy('created_at', 'desc')->paginate(14);
-        
-        return view('order.index', ['user' => $user, 'orders' => $orders, 'keyword' => $keyword]);
+                return view('order.index', 
+                [
+                    'user' => $user,
+                    'orders' => $orders
+                ]);
 
-    } else {
-        
-        $orders = $user->orders()->orderBy('created_at', 'desc')->paginate(14);
+            } else {
 
-        return view('order.index', ['user' => $user, 'orders' => $orders, 'keyword' => $keyword]);
-    }
+            $orders = $user->orders()->orderBy('created_at', 'desc')->paginate(14);
+
+            return view('order.index', 
+            [
+                'user' => $user,
+                'orders' => $orders
+            ]);
+
+        }
+
+        
+        
+    //     if($request->has('date') || $request->has('time') || $request->has('item') || $request->has('amount')) {
+
+    //         $validator = Validator::make($request->all(),[ 'order' => 'max:10']);
+
+    //         if($validator->fails())
+    //         {
+    //             return redirect()->back()->withErrors($validator->errors())->withInput();
+    //         }
+    
+    //         $orders = $user->orders()
+    //         ->where('order_name', 'like', '%'.$item.'%')
+    //         ->orWhere('order_price', $amount)
+    //         ->orWhere('created_at', $date)
+    //         ->orWhere('created_at', 'like', '%'.$time.'%')
+    //         ->orderBy('created_at', 'desc')->paginate(14);
+            
+            
+
+    // } else {
+        
+        
+    // }
 
 
     }

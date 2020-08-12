@@ -12,11 +12,16 @@
 
 <form action="/order" method="get">
 @csrf
-     <input type="text" name="order" value="{{ old('order', $keyword) }}" placeholder="入力してください">
+    <label for="date">日付で検索</label>
+     <input id="date" type="date" name="date">
+    <label for="time">時間で検索</label>
+     <input type="time" name="time" id="time">
+    <label for="item">商品名で検索</label>
+     <input type="text" name="item" id="item">
+    <label for="amount">金額で検索</label>
+     <input type="text" name="amount" id="amount">
      <input type="submit" value="検索">
 </form>
-<p>※検索方法　例(料金):1080　例2(品名):カレー(キーワードを入力)　例3(日付):2020-07-31　例4(時間):17:15:28</p>
-
 
 <div class="card">
   <div class="card-body">
