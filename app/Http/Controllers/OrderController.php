@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Validator;
+use Session;
 
 class OrderController extends Controller
 {
@@ -21,6 +22,7 @@ class OrderController extends Controller
         $time = $request->get('time');
         $item = $request->get('item');
         $amount = $request->get('amount');
+        $message = '検索結果が表示されました';
 
         if(!empty($date) && !empty($time) && !empty($item) && !empty($amount))
         {
@@ -36,7 +38,13 @@ class OrderController extends Controller
             return view('order.index', 
             [
                 'user' => $user,
-                'orders' => $orders
+                'orders' => $orders,
+                'date' => $date,
+                'time' => $time,
+                'item' => $item,
+                'amount' => $amount,
+                'message' => $message,
+                'message' => $message
             ]);
 
         } elseif (!empty($date) && !empty($time) && !empty($item)) {
@@ -52,7 +60,12 @@ class OrderController extends Controller
             return view('order.index', 
             [
                 'user' => $user,
-                'orders' => $orders
+                'orders' => $orders,
+                'date' => $date,
+                'time' => $time,
+                'item' => $item,
+                'amount' => $amount,
+                'message' => $message
             ]);
 
         } elseif(!empty($date) && !empty($time) && !empty($amount)) {
@@ -67,7 +80,12 @@ class OrderController extends Controller
             return view('order.index', 
             [
                 'user' => $user,
-                'orders' => $orders
+                'orders' => $orders,
+                'date' => $date,
+                'time' => $time,
+                'item' => $item,
+                'amount' => $amount,
+                'message' => $message
             ]);
 
         } elseif(!empty($time) && !empty($item) && !empty($amount)) {
@@ -83,7 +101,12 @@ class OrderController extends Controller
             return view('order.index', 
             [
                 'user' => $user,
-                'orders' => $orders
+                'orders' => $orders,
+                'date' => $date,
+                'time' => $time,
+                'item' => $item,
+                'amount' => $amount,
+                'message' => $message
             ]);
 
         } elseif(!empty($date) && !empty($item) && !empty($amount)) {
@@ -98,7 +121,12 @@ class OrderController extends Controller
             return view('order.index', 
             [
                 'user' => $user,
-                'orders' => $orders
+                'orders' => $orders,
+                'date' => $date,
+                'time' => $time,
+                'item' => $item,
+                'amount' => $amount,
+                'message' => $message
             ]);
 
         } elseif(!empty($date) && !empty($time)) {
@@ -112,7 +140,12 @@ class OrderController extends Controller
             return view('order.index', 
             [
                 'user' => $user,
-                'orders' => $orders
+                'orders' => $orders,
+                'date' => $date,
+                'time' => $time,
+                'item' => $item,
+                'amount' => $amount,
+                'message' => $message
             ]);
 
         } elseif(!empty($date) && !empty($item)) {
@@ -126,7 +159,12 @@ class OrderController extends Controller
             return view('order.index', 
             [
                 'user' => $user,
-                'orders' => $orders
+                'orders' => $orders,
+                'date' => $date,
+                'time' => $time,
+                'item' => $item,
+                'amount' => $amount,
+                'message' => $message
             ]);
 
         } elseif(!empty($date) && !empty($amount)) {
@@ -140,7 +178,12 @@ class OrderController extends Controller
             return view('order.index', 
             [
                 'user' => $user,
-                'orders' => $orders
+                'orders' => $orders,
+                'date' => $date,
+                'time' => $time,
+                'item' => $item,
+                'amount' => $amount,
+                'message' => $message
             ]);
 
         } elseif(!empty($time) && !empty($item)) {
@@ -154,7 +197,12 @@ class OrderController extends Controller
             return view('order.index', 
             [
                 'user' => $user,
-                'orders' => $orders
+                'orders' => $orders,
+                'date' => $date,
+                'time' => $time,
+                'item' => $item,
+                'amount' => $amount,
+                'message' => $message
             ]);
 
         } elseif(!empty($time) && !empty($amount)) {
@@ -168,7 +216,12 @@ class OrderController extends Controller
             return view('order.index', 
             [
                 'user' => $user,
-                'orders' => $orders
+                'orders' => $orders,
+                'date' => $date,
+                'time' => $time,
+                'item' => $item,
+                'amount' => $amount,
+                'message' => $message
             ]);
 
         } elseif(!empty($item) && !empty($amount)) {
@@ -182,7 +235,12 @@ class OrderController extends Controller
             return view('order.index', 
             [
                 'user' => $user,
-                'orders' => $orders
+                'orders' => $orders,
+                'date' => $date,
+                'time' => $time,
+                'item' => $item,
+                'amount' => $amount,
+                'message' => $message
             ]);
 
         } elseif(!empty($date) && empty($time) && empty($item) && empty($amount)) {
@@ -195,7 +253,12 @@ class OrderController extends Controller
             return view('order.index', 
             [
                 'user' => $user,
-                'orders' => $orders
+                'orders' => $orders,
+                'date' => $date,
+                'time' => $time,
+                'item' => $item,
+                'amount' => $amount,
+                'message' => $message
             ]);
 
         } elseif(empty($date) && !empty($time) && empty($item) && empty($amount)) {
@@ -208,7 +271,12 @@ class OrderController extends Controller
             return view('order.index', 
             [
                 'user' => $user,
-                'orders' => $orders
+                'orders' => $orders,
+                'date' => $date,
+                'time' => $time,
+                'item' => $item,
+                'amount' => $amount,
+                'message' => $message
             ]);
         
         
@@ -222,7 +290,12 @@ class OrderController extends Controller
                 return view('order.index', 
                 [
                     'user' => $user,
-                    'orders' => $orders
+                    'orders' => $orders,
+                    'date' => $date,
+                    'time' => $time,
+                    'item' => $item,
+                    'amount' => $amount,
+                    'message' => $message
                 ]);
 
             } elseif(empty($date) && empty($time) && empty($item) && !empty($amount)) {
@@ -235,7 +308,12 @@ class OrderController extends Controller
                 return view('order.index', 
                 [
                     'user' => $user,
-                    'orders' => $orders
+                    'orders' => $orders,
+                    'date' => $date,
+                    'time' => $time,
+                    'item' => $item,
+                    'amount' => $amount,
+                    'message' => $message
                 ]);
 
             } else {
@@ -245,7 +323,11 @@ class OrderController extends Controller
             return view('order.index', 
             [
                 'user' => $user,
-                'orders' => $orders
+                'orders' => $orders,
+                'date' => $date,
+                'time' => $time,
+                'item' => $item,
+                'amount' => $amount
             ]);
 
         }

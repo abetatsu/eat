@@ -10,16 +10,22 @@
 </div>
 @endif
 
+@if(!empty($message))
+    <div class="alert alert-success">
+          {{ $message }}
+    </div>
+@endif
+
 <form action="/order" method="get">
 @csrf
     <label for="date">日付で検索</label>
-     <input id="date" type="date" name="date">
+     <input id="date" type="date" name="date" value="{{ old('date', $date) }}">
     <label for="time">時間で検索</label>
-     <input type="time" name="time" id="time">
+     <input type="time" name="time" id="time" value="{{ old('time', $time) }}">
     <label for="item">商品名で検索</label>
-     <input type="text" name="item" id="item">
+     <input type="text" name="item" id="item" value="{{ old('item', $item) }}">
     <label for="amount">金額で検索</label>
-     <input type="text" name="amount" id="amount">
+     <input type="text" name="amount" id="amount" value="{{ old('amount', $amount) }}">
      <input type="submit" value="検索">
 </form>
 
