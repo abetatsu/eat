@@ -3,6 +3,12 @@
 
 @section('content')
 
+@if(Session::has('flash_message'))
+     <div class="alert alert-success">
+          {{ session('flash_message') }}
+     </div>
+@endif
+
 <div class="row">
   <div class="col-sm-6">
     <div class="card">
@@ -91,6 +97,10 @@
 <div class="card">
   <div class="card-header">
   {{ $user->name }}さんの本日({{ $user->updated_at->format('Y/m/d') }})の記録
+  <form method="get" action="/user/{{ Auth::user()->id }}/reset">
+    @csrf
+    <input type="submit" value="手動でリセット" class="btn btn-success" onclick='return confirm("本当に1日に摂取した栄養素をリセットしますか？");'>
+  </form>
   </div>
   <ul class="list-group list-group-flush">
         <li class="list-group-item">

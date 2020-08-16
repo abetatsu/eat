@@ -30,7 +30,8 @@ Route::get('/sidemenu', 'SidemenuController@index');
 Route::get('/sidemenu/{sidemenu}', 'SidemenuController@show')->middleware('auth');
 
 Route::post('/user', 'UserController@update');
-Route::get('/user/{user}', 'UserController@show')->middleware('auth');
+Route::get('/user/{user}', 'UserController@show')->name('user.show')->middleware('auth');
+Route::get('/user/{user}/reset', 'UserController@reset')->middleware('auth');
 
 Route::get('/order', 'OrderController@index')->middleware('auth');
 
