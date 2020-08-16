@@ -89,6 +89,8 @@ class UserController extends Controller
             $weekNeedsSodium = 49 - $user->totalWeekSodium;
         }
 
+        
+
         return view('user.show', 
         [
             'user' => $user,
@@ -302,5 +304,65 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function reset()
+    {
+        $user = Auth::user();
+
+        $user->totalCalories = 0;
+        $user->totalProtein = 0;
+        $user->totalFat = 0;
+        $user->totalCarb = 0;
+        $user->totalSodium = 0;
+
+        $user->save();
+
+        $orders = User::find($user->id)->orders()->orderBy('created_at', 'desc')->take(4)->get();
+
+        if($user->gender === 'male')
+        {
+            $dayNeedsCalories = 2500 - $user->totalCalories;
+            $dayNeedsProtein = 100 - $user->totalProtein;
+            $dayNeedsFat = 80 - $user->totalFat;
+            $dayNeedsCarb = 350 - $user->totalCarb;
+            $dayNeedsSodium = 8 - $user->totalSodium;
+            $weekNeedsCalories = 17500 - $user->totalWeekCalories;
+            $weekNeedsProtein = 700 - $user->totalWeekProtein;
+            $weekNeedsFat = 560 - $user->totalWeekFat;
+            $weekNeedsCarb = 2450 - $user->totalWeekCarb;
+            $weekNeedsSodium = 56 - $user->totalWeekSodium;
+
+        } elseif($user->gender === 'female') {
+            
+            $dayNeedsCalories = 1800 - $user->totalCalories;
+            $dayNeedsProtein = 70 - $user->totalProtein;
+            $dayNeedsFat = 50 - $user->totalFat;
+            $dayNeedsCarb = 290 - $user->totalCarb;
+            $dayNeedsSodium = 7 - $user->totalSodium;
+            $weekNeedsCalories = 12600 - $user->totalWeekCalories;
+            $weekNeedsProtein = 490 - $user->totalWeekProtein;
+            $weekNeedsFat = 350 - $user->totalWeekFat;
+            $weekNeedsCarb = 2030 - $user->totalWeekCarb;
+            $weekNeedsSodium = 49 - $user->totalWeekSodium;
+        }
+
+        
+
+        return redirect()->route('user.show', 
+        [
+            'user' => $user,
+            'orders' => $orders,
+            'dayNeedsCalories' => $dayNeedsCalories,
+            'dayNeedsProtein' => $dayNeedsProtein,
+            'dayNeedsFat' => $dayNeedsFat,
+            'dayNeedsCarb' => $dayNeedsCarb,
+            'dayNeedsSodium' => $dayNeedsSodium,
+            'weekNeedsCalories' => $weekNeedsCalories,
+            'weekNeedsProtein' => $weekNeedsProtein,
+            'weekNeedsFat' => $weekNeedsFat,
+            'weekNeedsCarb' => $weekNeedsCarb,
+            'weekNeedsSodium' => $weekNeedsSodium
+        ])->with('flash_message', '1日に摂取した栄養素が削除されました');
     }
 }
