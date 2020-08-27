@@ -9,7 +9,10 @@
 @endif
 
 <div class="center">
-  <div class="row">
+  <h3 class="home-text text-center py-3">食べたいものを選んでください</h3>
+  <p class="mini-text text-center">このアプリは某牛丼チェーンの商品を擬似的に注文して、PFC(タンパク質、脂質、炭水化物)バランスに基づき栄養を可視化するアプリです。</p>
+  <p class="mini-text text-center">料金等は一切かかりませんのでご安心ください</p>
+  <div class="row home-row">
     <div class="col-sm-6">
       <div class="card homecard">
         <div class="card-body">

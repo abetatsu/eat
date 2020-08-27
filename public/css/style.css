@@ -1,40 +1,65 @@
-.stretched-link::after{
-     position:absolute;
-     top:0;
-     right:0;
-     bottom:0;
-     left:0;
-     z-index:1;
-     pointer-events:auto;
-     content:"";
-     background-color:rgba(0,0,0,0);
-   }
+.stretched-link::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: auto;
+    content: "";
+    background-color: rgba(0, 0, 0, 0);
+}
 
-   .stretched-link {
-     font-size: 50px;
-     color: #fff;
-   }
+.stretched-link {
+    font-size: 50px;
+    color: #fff;
+}
 
-   
+.homecard {
+    background-color: #3490dc;
+    text-align: center;
+}
 
-   .homecard {
-        background-color: red;
-        text-align: center;
-   }
+.center {}
 
-   .center {
+button {
+    outline: none;
+}
 
-   }
+.btn:focus {
+    outline: none;
+    text-decoration: none;
+}
 
-   button {
-     outline: none;
-   }
+*:focus {
+    outline: none;
+}
 
-   .btn:focus {
-     outline: none;
-     text-decoration: none;
-   }
+.btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+  font-size: 16px;
+}
 
-  *:focus {
-     outline: none;
-   }
+@media (min-width: 576px) {
+  .col-sm-6 {
+      flex: 0 0 50%;
+      max-width: 50%;
+  }
+
+}
+
+.home-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 300px;
+  margin-left: 300px;
+}
+
+.home-text {
+  color: #222;
+}
+
+.mini-text {
+  color: #bbb;
+}
+
