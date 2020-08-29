@@ -18,26 +18,27 @@ class OtherController extends Controller
     {
         $keyword = $request->get('other');
 
-            if($request->has('other')) {
+        if ($request->has('other')) {
 
-                $validator = Validator::make($request->all(),
-                    [
+            $validator = Validator::make(
+                $request->all(),
+                [
                     'other' => 'required|max:10',
-                    ],
-                    [
-                        'other.required' => 'キーワードを入力してください',
-                    ]);
-    
-                if($validator->fails())
-                {
-                    return redirect()->back()->withErrors($validator->errors())->withInput();
-                }
-        
-            $others = Other::where('name', 'like', '%'.$keyword.'%')->paginate(12);
+                ],
+                [
+                    'other.required' => 'キーワードを入力してください',
+                ]
+            );
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator->errors())->withInput();
+            }
+
+            $others = Other::where('name', 'like', '%' . $keyword . '%')->paginate(12);
         } else {
             $others = Other::paginate(12);
         }
-        
+
         return view('other.index', ['others' => $others])->with('keyword', $keyword);
     }
 
@@ -72,8 +73,7 @@ class OtherController extends Controller
     {
         $user = Auth::user();
 
-        if($user->gender === 'male')
-        {
+        if ($user->gender === 'male') {
             $dayNeedsCalories = 2500 - $user->totalCalories;
             $dayNeedsProtein = 100 - $user->totalProtein;
             $dayNeedsFat = 80 - $user->totalFat;
@@ -84,8 +84,7 @@ class OtherController extends Controller
             $weekNeedsFat = 560 - $user->totalWeekFat;
             $weekNeedsCarb = 2450 - $user->totalWeekCarb;
             $weekNeedsSodium = 56 - $user->totalWeekSodium;
-
-        } elseif($user->gender === 'female') {
+        } elseif ($user->gender === 'female') {
             $dayNeedsCalories = 1800 - $user->totalCalories;
             $dayNeedsProtein = 70 - $user->totalProtein;
             $dayNeedsFat = 50 - $user->totalFat;
@@ -98,21 +97,23 @@ class OtherController extends Controller
             $weekNeedsSodium = 49 - $user->totalWeekSodium;
         }
 
-        return view('other.show', 
-        [
-            'other' => $other,
-            'user' => $user,
-            'dayNeedsCalories' => $dayNeedsCalories,
-            'dayNeedsProtein' => $dayNeedsProtein,
-            'dayNeedsFat' => $dayNeedsFat,
-            'dayNeedsCarb' => $dayNeedsCarb,
-            'dayNeedsSodium' => $dayNeedsSodium,
-            'weekNeedsCalories' => $weekNeedsCalories,
-            'weekNeedsProtein' => $weekNeedsProtein,
-            'weekNeedsFat' => $weekNeedsFat,
-            'weekNeedsCarb' => $weekNeedsCarb,
-            'weekNeedsSodium' => $weekNeedsSodium
-        ]);
+        return view(
+            'other.show',
+            [
+                'other' => $other,
+                'user' => $user,
+                'dayNeedsCalories' => $dayNeedsCalories,
+                'dayNeedsProtein' => $dayNeedsProtein,
+                'dayNeedsFat' => $dayNeedsFat,
+                'dayNeedsCarb' => $dayNeedsCarb,
+                'dayNeedsSodium' => $dayNeedsSodium,
+                'weekNeedsCalories' => $weekNeedsCalories,
+                'weekNeedsProtein' => $weekNeedsProtein,
+                'weekNeedsFat' => $weekNeedsFat,
+                'weekNeedsCarb' => $weekNeedsCarb,
+                'weekNeedsSodium' => $weekNeedsSodium
+            ]
+        );
     }
 
     /**

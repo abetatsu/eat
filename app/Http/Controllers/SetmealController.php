@@ -18,28 +18,28 @@ class SetmealController extends Controller
     {
         $keyword = $request->get('setmeal');
 
-            if($request->has('setmeal')) {
+        if ($request->has('setmeal')) {
 
-                $validator = Validator::make($request->all(),
-                    [
+            $validator = Validator::make(
+                $request->all(),
+                [
                     'setmeal' => 'required|max:10',
-                    ],
-                    [
-                        'setmeal.required' => 'キーワードを入力してください',
-                    ]);
-    
-                if($validator->fails())
-                {
-                    return redirect()->back()->withErrors($validator->errors())->withInput();
-                }
+                ],
+                [
+                    'setmeal.required' => 'キーワードを入力してください',
+                ]
+            );
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator->errors())->withInput();
+            }
 
 
-            $setmeals = Setmeal::where('name', 'like', '%'.$keyword.'%')->paginate(12);
-
+            $setmeals = Setmeal::where('name', 'like', '%' . $keyword . '%')->paginate(12);
         } else {
             $setmeals = Setmeal::paginate(12);
         }
-        
+
         return view('setmeal.index', ['setmeals' => $setmeals])->with('keyword', $keyword);
     }
 
@@ -74,8 +74,7 @@ class SetmealController extends Controller
     {
         $user = Auth::user();
 
-        if($user->gender === 'male')
-        {
+        if ($user->gender === 'male') {
             $dayNeedsCalories = 2500 - $user->totalCalories;
             $dayNeedsProtein = 100 - $user->totalProtein;
             $dayNeedsFat = 80 - $user->totalFat;
@@ -86,8 +85,7 @@ class SetmealController extends Controller
             $weekNeedsFat = 560 - $user->totalWeekFat;
             $weekNeedsCarb = 2450 - $user->totalWeekCarb;
             $weekNeedsSodium = 56 - $user->totalWeekSodium;
-
-        } elseif($user->gender === 'female') {
+        } elseif ($user->gender === 'female') {
             $dayNeedsCalories = 1800 - $user->totalCalories;
             $dayNeedsProtein = 70 - $user->totalProtein;
             $dayNeedsFat = 50 - $user->totalFat;
@@ -100,21 +98,23 @@ class SetmealController extends Controller
             $weekNeedsSodium = 49 - $user->totalWeekSodium;
         }
 
-        return view('setmeal.show', 
-        [
-            'setmeal' => $setmeal,
-            'user' => $user,
-            'dayNeedsCalories' => $dayNeedsCalories,
-            'dayNeedsProtein' => $dayNeedsProtein,
-            'dayNeedsFat' => $dayNeedsFat,
-            'dayNeedsCarb' => $dayNeedsCarb,
-            'dayNeedsSodium' => $dayNeedsSodium,
-            'weekNeedsCalories' => $weekNeedsCalories,
-            'weekNeedsProtein' => $weekNeedsProtein,
-            'weekNeedsFat' => $weekNeedsFat,
-            'weekNeedsCarb' => $weekNeedsCarb,
-            'weekNeedsSodium' => $weekNeedsSodium
-        ]);
+        return view(
+            'setmeal.show',
+            [
+                'setmeal' => $setmeal,
+                'user' => $user,
+                'dayNeedsCalories' => $dayNeedsCalories,
+                'dayNeedsProtein' => $dayNeedsProtein,
+                'dayNeedsFat' => $dayNeedsFat,
+                'dayNeedsCarb' => $dayNeedsCarb,
+                'dayNeedsSodium' => $dayNeedsSodium,
+                'weekNeedsCalories' => $weekNeedsCalories,
+                'weekNeedsProtein' => $weekNeedsProtein,
+                'weekNeedsFat' => $weekNeedsFat,
+                'weekNeedsCarb' => $weekNeedsCarb,
+                'weekNeedsSodium' => $weekNeedsSodium
+            ]
+        );
     }
 
     /**

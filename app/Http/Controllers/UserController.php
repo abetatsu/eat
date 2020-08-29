@@ -48,7 +48,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
     }
 
     /**
@@ -62,8 +61,7 @@ class UserController extends Controller
         $user = Auth::user();
         $orders = User::find($user->id)->orders()->orderBy('created_at', 'desc')->take(4)->get();
 
-        if($user->gender === 'male')
-        {
+        if ($user->gender === 'male') {
             $dayNeedsCalories = 2500 - $user->totalCalories;
             $dayNeedsProtein = 100 - $user->totalProtein;
             $dayNeedsFat = 80 - $user->totalFat;
@@ -74,9 +72,8 @@ class UserController extends Controller
             $weekNeedsFat = 560 - $user->totalWeekFat;
             $weekNeedsCarb = 2450 - $user->totalWeekCarb;
             $weekNeedsSodium = 56 - $user->totalWeekSodium;
+        } elseif ($user->gender === 'female') {
 
-        } elseif($user->gender === 'female') {
-            
             $dayNeedsCalories = 1800 - $user->totalCalories;
             $dayNeedsProtein = 70 - $user->totalProtein;
             $dayNeedsFat = 50 - $user->totalFat;
@@ -89,23 +86,25 @@ class UserController extends Controller
             $weekNeedsSodium = 49 - $user->totalWeekSodium;
         }
 
-        
 
-        return view('user.show', 
-        [
-            'user' => $user,
-            'orders' => $orders,
-            'dayNeedsCalories' => $dayNeedsCalories,
-            'dayNeedsProtein' => $dayNeedsProtein,
-            'dayNeedsFat' => $dayNeedsFat,
-            'dayNeedsCarb' => $dayNeedsCarb,
-            'dayNeedsSodium' => $dayNeedsSodium,
-            'weekNeedsCalories' => $weekNeedsCalories,
-            'weekNeedsProtein' => $weekNeedsProtein,
-            'weekNeedsFat' => $weekNeedsFat,
-            'weekNeedsCarb' => $weekNeedsCarb,
-            'weekNeedsSodium' => $weekNeedsSodium
-        ]);
+
+        return view(
+            'user.show',
+            [
+                'user' => $user,
+                'orders' => $orders,
+                'dayNeedsCalories' => $dayNeedsCalories,
+                'dayNeedsProtein' => $dayNeedsProtein,
+                'dayNeedsFat' => $dayNeedsFat,
+                'dayNeedsCarb' => $dayNeedsCarb,
+                'dayNeedsSodium' => $dayNeedsSodium,
+                'weekNeedsCalories' => $weekNeedsCalories,
+                'weekNeedsProtein' => $weekNeedsProtein,
+                'weekNeedsFat' => $weekNeedsFat,
+                'weekNeedsCarb' => $weekNeedsCarb,
+                'weekNeedsSodium' => $weekNeedsSodium
+            ]
+        );
     }
 
     /**
@@ -116,7 +115,6 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        
     }
 
     /**
@@ -130,7 +128,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        if($request->has('beef_id')) {
+        if ($request->has('beef_id')) {
             $beef = Beef::find($request->beef_id);
 
             $order = Order::create(
@@ -140,9 +138,10 @@ class UserController extends Controller
                     'order_price' => $beef->price,
                     'created_at' => new DateTime(),
                     'updated_at' => new DateTime(),
-                ]);
+                ]
+            );
 
-            
+
             $user->totalPrice += $beef->price;
             $user->totalCalories += $beef->calories;
             $user->totalProtein += $beef->protein;
@@ -155,8 +154,7 @@ class UserController extends Controller
             $user->totalWeekFat += $beef->fat;
             $user->totalWeekCarb += $beef->carb;
             $user->totalWeekSodium += $beef->sodium;
-
-        } else if($request->has('curry_id')) {
+        } else if ($request->has('curry_id')) {
 
             $curry = Curry::find($request->curry_id);
 
@@ -167,7 +165,8 @@ class UserController extends Controller
                     'order_price' => $curry->price,
                     'created_at' => new DateTime(),
                     'updated_at' => new DateTime(),
-                ]);
+                ]
+            );
 
             $user->totalPrice += $curry->price;
             $user->totalCalories += $curry->calories;
@@ -181,8 +180,7 @@ class UserController extends Controller
             $user->totalWeekFat += $curry->fat;
             $user->totalWeekCarb += $curry->carb;
             $user->totalWeekSodium += $curry->sodium;
-
-        } else if($request->has('morning_id')) {
+        } else if ($request->has('morning_id')) {
 
             $morning = Morning::find($request->morning_id);
 
@@ -193,7 +191,8 @@ class UserController extends Controller
                     'order_price' => $morning->price,
                     'created_at' => new DateTime(),
                     'updated_at' => new DateTime(),
-                ]);
+                ]
+            );
 
             $user->totalPrice += $morning->price;
             $user->totalCalories += $morning->calories;
@@ -207,8 +206,7 @@ class UserController extends Controller
             $user->totalWeekFat += $morning->fat;
             $user->totalWeekCarb += $morning->carb;
             $user->totalWeekSodium += $morning->sodium;
-
-        } else if($request->has('other_id')) {
+        } else if ($request->has('other_id')) {
 
             $other = Other::find($request->other_id);
 
@@ -219,7 +217,8 @@ class UserController extends Controller
                     'order_price' => $other->price,
                     'created_at' => new DateTime(),
                     'updated_at' => new DateTime(),
-                ]);
+                ]
+            );
 
             $user->totalPrice += $other->price;
             $user->totalCalories += $other->calories;
@@ -233,8 +232,7 @@ class UserController extends Controller
             $user->totalWeekFat += $other->fat;
             $user->totalWeekCarb += $other->carb;
             $user->totalWeekSodium += $other->sodium;
-
-        } else if($request->has('setmeal_id')) {
+        } else if ($request->has('setmeal_id')) {
 
             $setmeal = Setmeal::find($request->setmeal_id);
 
@@ -245,7 +243,8 @@ class UserController extends Controller
                     'order_price' => $setmeal->price,
                     'created_at' => new DateTime(),
                     'updated_at' => new DateTime(),
-                ]);
+                ]
+            );
 
             $user->totalPrice += $setmeal->price;
             $user->totalCalories += $setmeal->calories;
@@ -259,8 +258,7 @@ class UserController extends Controller
             $user->totalWeekFat += $setmeal->fat;
             $user->totalWeekCarb += $setmeal->carb;
             $user->totalWeekSodium += $setmeal->sodium;
-
-        } else if($request->has('sidemenu_id')) {
+        } else if ($request->has('sidemenu_id')) {
 
             $sidemenu = Sidemenu::find($request->sidemenu_id);
 
@@ -271,7 +269,8 @@ class UserController extends Controller
                     'order_price' => $sidemenu->price,
                     'created_at' => new DateTime(),
                     'updated_at' => new DateTime(),
-                ]);
+                ]
+            );
 
             $user->totalPrice += $sidemenu->price;
             $user->totalCalories += $sidemenu->calories;
@@ -289,9 +288,9 @@ class UserController extends Controller
 
 
         $order->save();
-        
+
         $user->save();
-        
+
         return redirect('/')->with('flash_message', '購入完了しました');
     }
 
@@ -320,8 +319,7 @@ class UserController extends Controller
 
         $orders = User::find($user->id)->orders()->orderBy('created_at', 'desc')->take(4)->get();
 
-        if($user->gender === 'male')
-        {
+        if ($user->gender === 'male') {
             $dayNeedsCalories = 2500 - $user->totalCalories;
             $dayNeedsProtein = 100 - $user->totalProtein;
             $dayNeedsFat = 80 - $user->totalFat;
@@ -332,9 +330,8 @@ class UserController extends Controller
             $weekNeedsFat = 560 - $user->totalWeekFat;
             $weekNeedsCarb = 2450 - $user->totalWeekCarb;
             $weekNeedsSodium = 56 - $user->totalWeekSodium;
+        } elseif ($user->gender === 'female') {
 
-        } elseif($user->gender === 'female') {
-            
             $dayNeedsCalories = 1800 - $user->totalCalories;
             $dayNeedsProtein = 70 - $user->totalProtein;
             $dayNeedsFat = 50 - $user->totalFat;
@@ -347,22 +344,24 @@ class UserController extends Controller
             $weekNeedsSodium = 49 - $user->totalWeekSodium;
         }
 
-        
 
-        return redirect()->route('user.show', 
-        [
-            'user' => $user,
-            'orders' => $orders,
-            'dayNeedsCalories' => $dayNeedsCalories,
-            'dayNeedsProtein' => $dayNeedsProtein,
-            'dayNeedsFat' => $dayNeedsFat,
-            'dayNeedsCarb' => $dayNeedsCarb,
-            'dayNeedsSodium' => $dayNeedsSodium,
-            'weekNeedsCalories' => $weekNeedsCalories,
-            'weekNeedsProtein' => $weekNeedsProtein,
-            'weekNeedsFat' => $weekNeedsFat,
-            'weekNeedsCarb' => $weekNeedsCarb,
-            'weekNeedsSodium' => $weekNeedsSodium
-        ])->with('flash_message', '1日に摂取した栄養素が削除されました');
+
+        return redirect()->route(
+            'user.show',
+            [
+                'user' => $user,
+                'orders' => $orders,
+                'dayNeedsCalories' => $dayNeedsCalories,
+                'dayNeedsProtein' => $dayNeedsProtein,
+                'dayNeedsFat' => $dayNeedsFat,
+                'dayNeedsCarb' => $dayNeedsCarb,
+                'dayNeedsSodium' => $dayNeedsSodium,
+                'weekNeedsCalories' => $weekNeedsCalories,
+                'weekNeedsProtein' => $weekNeedsProtein,
+                'weekNeedsFat' => $weekNeedsFat,
+                'weekNeedsCarb' => $weekNeedsCarb,
+                'weekNeedsSodium' => $weekNeedsSodium
+            ]
+        )->with('flash_message', '1日に摂取した栄養素が削除されました');
     }
 }

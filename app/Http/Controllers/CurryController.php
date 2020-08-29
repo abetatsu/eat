@@ -17,29 +17,29 @@ class CurryController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('curry');
-        
-        if($request->has('curry')) {
 
-            $validator = Validator::make($request->all(),
+        if ($request->has('curry')) {
+
+            $validator = Validator::make(
+                $request->all(),
                 [
-                'curry' => 'required|max:10',
+                    'curry' => 'required|max:10',
                 ],
                 [
-                'curry.required' => 'キーワードを入力してください',
-                ]);
+                    'curry.required' => 'キーワードを入力してください',
+                ]
+            );
 
-            if($validator->fails())
-            {
+            if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator->errors())->withInput();
             }
 
-            $curries = Curry::where('name', 'like', '%'.$keyword.'%')->paginate(10);
-
+            $curries = Curry::where('name', 'like', '%' . $keyword . '%')->paginate(10);
         } else {
-            
+
             $curries = Curry::paginate(10);
         }
-        
+
         return view('curry.index', ['curries' => $curries])->with('keyword', $keyword);
     }
 
@@ -74,8 +74,7 @@ class CurryController extends Controller
     {
         $user = Auth::user();
 
-        if($user->gender === 'male')
-        {
+        if ($user->gender === 'male') {
             $dayNeedsCalories = 2500 - $user->totalCalories;
             $dayNeedsProtein = 100 - $user->totalProtein;
             $dayNeedsFat = 80 - $user->totalFat;
@@ -86,8 +85,7 @@ class CurryController extends Controller
             $weekNeedsFat = 560 - $user->totalWeekFat;
             $weekNeedsCarb = 2450 - $user->totalWeekCarb;
             $weekNeedsSodium = 56 - $user->totalWeekSodium;
-
-        } elseif($user->gender === 'female') {
+        } elseif ($user->gender === 'female') {
             $dayNeedsCalories = 1800 - $user->totalCalories;
             $dayNeedsProtein = 70 - $user->totalProtein;
             $dayNeedsFat = 50 - $user->totalFat;
@@ -100,22 +98,24 @@ class CurryController extends Controller
             $weekNeedsSodium = 49 - $user->totalWeekSodium;
         }
 
-        return view('curry.show', 
-        [
-            'curry' => $curry,
-            'user' => $user,
-            'dayNeedsCalories' => $dayNeedsCalories,
-            'dayNeedsProtein' => $dayNeedsProtein,
-            'dayNeedsFat' => $dayNeedsFat,
-            'dayNeedsCarb' => $dayNeedsCarb,
-            'dayNeedsSodium' => $dayNeedsSodium,
-            'weekNeedsCalories' => $weekNeedsCalories,
-            'weekNeedsProtein' => $weekNeedsProtein,
-            'weekNeedsFat' => $weekNeedsFat,
-            'weekNeedsCarb' => $weekNeedsCarb,
-            'weekNeedsSodium' => $weekNeedsSodium
+        return view(
+            'curry.show',
+            [
+                'curry' => $curry,
+                'user' => $user,
+                'dayNeedsCalories' => $dayNeedsCalories,
+                'dayNeedsProtein' => $dayNeedsProtein,
+                'dayNeedsFat' => $dayNeedsFat,
+                'dayNeedsCarb' => $dayNeedsCarb,
+                'dayNeedsSodium' => $dayNeedsSodium,
+                'weekNeedsCalories' => $weekNeedsCalories,
+                'weekNeedsProtein' => $weekNeedsProtein,
+                'weekNeedsFat' => $weekNeedsFat,
+                'weekNeedsCarb' => $weekNeedsCarb,
+                'weekNeedsSodium' => $weekNeedsSodium
 
-        ]);
+            ]
+        );
     }
 
     /**

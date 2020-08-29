@@ -18,23 +18,23 @@ class BeefController extends Controller
     {
         $keyword = $request->get('beef');
 
-            if($request->has('beef')) {
+        if ($request->has('beef')) {
 
-                $validator = Validator::make($request->all(),
-                    [
+            $validator = Validator::make(
+                $request->all(),
+                [
                     'beef' => 'required|max:10',
-                    ],
-                    [
-                        'beef.required' => 'キーワードを入力してください',
-                    ]);
-    
-                if($validator->fails())
-                {
-                    return redirect()->back()->withErrors($validator->errors())->withInput();
-                }
+                ],
+                [
+                    'beef.required' => 'キーワードを入力してください',
+                ]
+            );
 
-            $beefs = Beef::where('name', 'like', '%'.$keyword.'%')->paginate(12);
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator->errors())->withInput();
+            }
 
+            $beefs = Beef::where('name', 'like', '%' . $keyword . '%')->paginate(12);
         } else {
             $beefs = Beef::paginate(12);
         }
@@ -70,37 +70,36 @@ class BeefController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Beef $beef)
-    {   
-        
-            $user = Auth::user();
+    {
 
-            if($user->gender === 'male')
-            {
-                $dayNeedsCalories = 2500 - $user->totalCalories;
-                $dayNeedsProtein = 100 - $user->totalProtein;
-                $dayNeedsFat = 80 - $user->totalFat;
-                $dayNeedsCarb = 350 - $user->totalCarb;
-                $dayNeedsSodium = 8 - $user->totalSodium;
-                $weekNeedsCalories = 17500 - $user->totalWeekCalories;
-                $weekNeedsProtein = 700 - $user->totalWeekProtein;
-                $weekNeedsFat = 560 - $user->totalWeekFat;
-                $weekNeedsCarb = 2450 - $user->totalWeekCarb;
-                $weekNeedsSodium = 56 - $user->totalWeekSodium;
+        $user = Auth::user();
 
-            } elseif($user->gender === 'female') {
-                $dayNeedsCalories = 1800 - $user->totalCalories;
-                $dayNeedsProtein = 70 - $user->totalProtein;
-                $dayNeedsFat = 50 - $user->totalFat;
-                $dayNeedsCarb = 290 - $user->totalCarb;
-                $dayNeedsSodium = 7 - $user->totalSodium;
-                $weekNeedsCalories = 12600 - $user->totalWeekCalories;
-                $weekNeedsProtein = 490 - $user->totalWeekProtein;
-                $weekNeedsFat = 350 - $user->totalWeekFat;
-                $weekNeedsCarb = 2030 - $user->totalWeekCarb;
-                $weekNeedsSodium = 49 - $user->totalWeekSodium;
-            }
+        if ($user->gender === 'male') {
+            $dayNeedsCalories = 2500 - $user->totalCalories;
+            $dayNeedsProtein = 100 - $user->totalProtein;
+            $dayNeedsFat = 80 - $user->totalFat;
+            $dayNeedsCarb = 350 - $user->totalCarb;
+            $dayNeedsSodium = 8 - $user->totalSodium;
+            $weekNeedsCalories = 17500 - $user->totalWeekCalories;
+            $weekNeedsProtein = 700 - $user->totalWeekProtein;
+            $weekNeedsFat = 560 - $user->totalWeekFat;
+            $weekNeedsCarb = 2450 - $user->totalWeekCarb;
+            $weekNeedsSodium = 56 - $user->totalWeekSodium;
+        } elseif ($user->gender === 'female') {
+            $dayNeedsCalories = 1800 - $user->totalCalories;
+            $dayNeedsProtein = 70 - $user->totalProtein;
+            $dayNeedsFat = 50 - $user->totalFat;
+            $dayNeedsCarb = 290 - $user->totalCarb;
+            $dayNeedsSodium = 7 - $user->totalSodium;
+            $weekNeedsCalories = 12600 - $user->totalWeekCalories;
+            $weekNeedsProtein = 490 - $user->totalWeekProtein;
+            $weekNeedsFat = 350 - $user->totalWeekFat;
+            $weekNeedsCarb = 2030 - $user->totalWeekCarb;
+            $weekNeedsSodium = 49 - $user->totalWeekSodium;
+        }
 
-            return view('beef.show', 
+        return view(
+            'beef.show',
             [
                 'beef' => $beef,
                 'user' => $user,
@@ -114,7 +113,8 @@ class BeefController extends Controller
                 'weekNeedsFat' => $weekNeedsFat,
                 'weekNeedsCarb' => $weekNeedsCarb,
                 'weekNeedsSodium' => $weekNeedsSodium
-            ]);
+            ]
+        );
     }
 
     /**

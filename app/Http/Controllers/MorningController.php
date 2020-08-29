@@ -18,27 +18,27 @@ class MorningController extends Controller
     {
         $keyword = $request->get('morning');
 
-            if($request->has('morning')) {
+        if ($request->has('morning')) {
 
-                $validator = Validator::make($request->all(),
-                    [
+            $validator = Validator::make(
+                $request->all(),
+                [
                     'morning' => 'required|max:10',
-                    ],
-                    [
-                        'morning.required' => 'キーワードを入力してください',
-                    ]);
-    
-                if($validator->fails())
-                {
-                    return redirect()->back()->withErrors($validator->errors())->withInput();
-                }
+                ],
+                [
+                    'morning.required' => 'キーワードを入力してください',
+                ]
+            );
 
-            $mornings = Morning::where('name', 'like', '%'.$keyword.'%')->paginate(12);
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator->errors())->withInput();
+            }
 
+            $mornings = Morning::where('name', 'like', '%' . $keyword . '%')->paginate(12);
         } else {
             $mornings = Morning::paginate(12);
         }
-        
+
         return view('morning.index', ['mornings' => $mornings])->with('keyword', $keyword);
     }
 
@@ -73,8 +73,7 @@ class MorningController extends Controller
     {
         $user = Auth::user();
 
-        if($user->gender === 'male')
-        {
+        if ($user->gender === 'male') {
             $dayNeedsCalories = 2500 - $user->totalCalories;
             $dayNeedsProtein = 100 - $user->totalProtein;
             $dayNeedsFat = 80 - $user->totalFat;
@@ -85,8 +84,7 @@ class MorningController extends Controller
             $weekNeedsFat = 560 - $user->totalWeekFat;
             $weekNeedsCarb = 2450 - $user->totalWeekCarb;
             $weekNeedsSodium = 56 - $user->totalWeekSodium;
-
-        } elseif($user->gender === 'female') {
+        } elseif ($user->gender === 'female') {
             $dayNeedsCalories = 1800 - $user->totalCalories;
             $dayNeedsProtein = 70 - $user->totalProtein;
             $dayNeedsFat = 50 - $user->totalFat;
@@ -99,21 +97,23 @@ class MorningController extends Controller
             $weekNeedsSodium = 49 - $user->totalWeekSodium;
         }
 
-        return view('morning.show', 
-        [
-            'morning'=> $morning,
-            'user' => $user,
-            'dayNeedsCalories' => $dayNeedsCalories,
-            'dayNeedsProtein' => $dayNeedsProtein,
-            'dayNeedsFat' => $dayNeedsFat,
-            'dayNeedsCarb' => $dayNeedsCarb,
-            'dayNeedsSodium' => $dayNeedsSodium,
-            'weekNeedsCalories' => $weekNeedsCalories,
-            'weekNeedsProtein' => $weekNeedsProtein,
-            'weekNeedsFat' => $weekNeedsFat,
-            'weekNeedsCarb' => $weekNeedsCarb,
-            'weekNeedsSodium' => $weekNeedsSodium
-        ]);
+        return view(
+            'morning.show',
+            [
+                'morning' => $morning,
+                'user' => $user,
+                'dayNeedsCalories' => $dayNeedsCalories,
+                'dayNeedsProtein' => $dayNeedsProtein,
+                'dayNeedsFat' => $dayNeedsFat,
+                'dayNeedsCarb' => $dayNeedsCarb,
+                'dayNeedsSodium' => $dayNeedsSodium,
+                'weekNeedsCalories' => $weekNeedsCalories,
+                'weekNeedsProtein' => $weekNeedsProtein,
+                'weekNeedsFat' => $weekNeedsFat,
+                'weekNeedsCarb' => $weekNeedsCarb,
+                'weekNeedsSodium' => $weekNeedsSodium
+            ]
+        );
     }
 
     /**
